@@ -3,271 +3,619 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CONFRONT - Contabilidade Estratégica para nutricionistas e médicos</title>
-    <meta name="description" content="Contabilidade estratégica focada em nutricionistas, médicos. Simplificamos suas finanças para o seu crescimento.">
+    <title>CONFRONT | Contabilidade para Nutricionistas</title>
+    <meta name="description" content="Contabilidade estratégica focada exclusivamente em nutricionistas.">
+    <!-- ATENÇÃO: Para usar seu favicon real, coloque o arquivo 'favicon.png' na pasta assets -->
     <link rel="icon" type="image/png" href="assets/logo.png">
 
-    <!-- Tailwind CSS (CDN) -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts (CDN) -->
+    <!-- Configuração High-End Tech -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#CCFF00', /* Verde Neon/Acid - Mantido pois você curtiu */
+                            dim: '#708238',     
+                            glow: 'rgba(204, 255, 0, 0.6)'
+                        },
+                        dark: {
+                            base: '#030303',
+                            surface: '#0A0A0A',
+                            card: '#111111',
+                            border: '#222222'
+                        }
+                    },
+                    fontFamily: {
+                        anton: ['Anton', 'sans-serif'],
+                        space: ['Space Grotesk', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'grid-tech': "linear-gradient(to right, #1a1a1a 1px, transparent 1px), linear-gradient(to bottom, #1a1a1a 1px, transparent 1px)",
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'marquee': 'marquee 25s linear infinite',
+                        'spin-slow': 'spin 10s linear infinite',
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome for Icons (CDN) -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- Estilos CSS Embutidos -->
     <style>
+        /* Estilos Globais */
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #000000;
-            color: #FFFFFF;
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #030303;
+            color: #EDEDED;
+            overflow-x: hidden;
         }
-        .font-anton {
-            font-family: 'Anton', sans-serif;
-            letter-spacing: 1.5px;
+
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
         }
-        .brand-orange {
-            color: #708238;
+
+        .hero-text {
+            line-height: 0.85;
+            letter-spacing: -0.02em;
         }
-        .bg-brand-orange {
-            background-color: #708238;
+
+        .glass-dark {
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-        .btn-primary {
-            background-color: #708238;
-            transition: all 0.3s ease;
-        }
-        .btn-primary:hover {
-            background-color: #FFFFFF;
-            color: #708238;
-            transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(249, 105, 14, 0.4);
-        }
-        .nav-link {
+
+        .tech-card {
+            background: #0A0A0A;
+            border: 1px solid #222;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
             position: relative;
-            transition: color 0.3s ease;
+            overflow: hidden;
         }
-        .nav-link:hover {
-            color: #708238;
-        }
-        .nav-link::after {
+        
+        .tech-card::before {
             content: '';
             position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #708238;
-            transition: width 0.3s ease;
-        }
-        .nav-link:hover::after {
+            top: 0;
+            left: 0;
             width: 100%;
-        }
-        .nav-link-mobile {
-            padding: 8px 12px;
-            border-radius: 6px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        .nav-link-mobile:hover {
-            background-color: #222;
-            color: #708238;
-        }
-        .section-card {
-            background-color: #111111;
-            border: 1px solid #222222;
-            transition: all 0.3s ease;
-        }
-        .section-card:hover {
-            border-color: #708238;
-            transform: translateY(-5px);
-        }
-        .fade-in {
+            height: 100%;
+            background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.06), transparent 40%);
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transition: opacity 0.4s;
+            pointer-events: none;
         }
-        .fade-in.visible {
+        
+        .tech-card:hover::before {
+            opacity: 1;
+        }
+        
+        .tech-card:hover {
+            border-color: #CCFF00;
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px rgba(204, 255, 0, 0.1);
+        }
+
+        .hover-color-img {
+            filter: grayscale(100%) contrast(1.2);
+            transition: filter 0.5s ease, transform 0.7s ease;
+        }
+        .group:hover .hover-color-img {
+            filter: grayscale(0%) contrast(1);
+            transform: scale(1.03);
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #CCFF00;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
+
+        .btn-neon {
+            background-color: #CCFF00;
+            color: #000;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .btn-neon::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background-color: #FFFFFF;
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+        .btn-neon:hover::after {
+            width: 100%;
+        }
+        .btn-neon:hover {
+            box-shadow: 0 0 20px #CCFF00;
+        }
+
+        .marquee-strip {
+            background: #CCFF00;
+            color: #000;
+            transform: rotate(-1deg) scale(1.02);
+            border-top: 1px solid #fff;
+            border-bottom: 1px solid #fff;
+        }
+
+        /* CF MONOGRAM ICON CSS */
+        .cf-icon {
+            font-family: 'Anton', sans-serif;
+            position: relative;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            border-radius: 50%;
+            border: 2px solid #CCFF00;
+            color: #CCFF00;
+            font-size: 20px;
+            line-height: 1;
+            overflow: hidden;
+        }
+        .cf-icon span {
+            position: relative;
+            z-index: 2;
+        }
+        .cf-icon::before {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            background: #CCFF00;
+            right: 0;
+            top: 0;
+            z-index: 1;
+        }
+        .cf-icon-inner {
+            position: relative;
+            z-index: 10;
+            display: flex;
+        }
+        .cf-c { color: #CCFF00; margin-right: -2px; }
+        .cf-f { color: #000; margin-left: -2px;}
+        
     </style>
 </head>
-<body class="antialiased">
+<body class="selection:bg-brand selection:text-black">
 
-    <!-- Cabeçalho com Navegação -->
-    <header class="bg-black/80 backdrop-blur-md sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-3xl font-anton">
-                <!-- CAMINHO PARA A LOGO -->
-                <img src="assets/logo.png" alt="Logo CONFRONT" class="h-10">
+    <div class="noise-overlay"></div>
+
+    <!-- Navegação -->
+    <header class="fixed w-full z-50 glass-dark transition-all duration-300" id="navbar">
+        <nav class="container mx-auto px-6 py-5 flex justify-between items-center">
+            
+            <!-- LOGO MODIFICADA COM A INSPIRAÇÃO DAS IMAGENS -->
+            <!-- NOTA: Se quiser usar sua imagem PNG real, substitua todo este bloco <a> por: 
+                 <a href="#"><img src="assets/sua-logo.png" alt="Confront" class="h-12"></a> 
+            -->
+            <a href="#" class="relative z-50 group flex items-center gap-3">
+                <!-- Ícone CF Recriado em CSS -->
+                <div class="cf-icon group-hover:rotate-180 transition-transform duration-700">
+                    <div class="cf-icon-inner">
+                        <span class="cf-c font-anton">C</span>
+                        <span class="cf-f font-anton">F</span>
+                    </div>
+                    <!-- Half background logic applied in CSS above -->
+                </div>
+
+                <div class="flex flex-col">
+                    <!-- Texto CON + FRONT em Bloco (Inspirado na imagem_39b87a.png) -->
+                    <div class="flex items-center leading-none">
+                        <span class="text-2xl font-anton text-white tracking-wide">CON</span>
+                        <span class="text-2xl font-anton bg-brand text-black px-1 ml-0.5 tracking-wide transform -skew-x-12">FRONT</span>
+                    </div>
+                    <span class="text-[9px] uppercase tracking-[0.4em] text-brand mt-1">Contabilidade</span>
+                </div>
             </a>
-            <div class="hidden md:flex space-x-8 items-center">
-                <a href="#quem-somos" class="nav-link">Quem Somos</a>
-                <a href="#servicos" class="nav-link">Serviços</a>
-                <a href="#metodo" class="nav-link">Nosso Método</a>
-                <a href="#contato" class="bg-brand-orange text-white font-bold py-2 px-6 rounded-md btn-primary">Fale Conosco</a>
+
+            <div class="hidden md:flex items-center space-x-12">
+                <a href="#quem-somos" class="text-xs uppercase tracking-widest font-bold text-gray-400 hover:text-brand transition-colors">Quem Somos</a>
+                <a href="#servicos" class="text-xs uppercase tracking-widest font-bold text-gray-400 hover:text-brand transition-colors">Serviços</a>
+                <a href="#metodo" class="text-xs uppercase tracking-widest font-bold text-gray-400 hover:text-brand transition-colors">Método</a>
+                <a href="https://wa.me/5547996816214" target="_blank" class="btn-neon px-6 py-2 text-xs uppercase tracking-widest clip-path-slant">
+                    Fale Conosco
+                </a>
             </div>
-            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+
+            <button id="mobile-menu-btn" class="md:hidden text-white hover:text-brand transition-colors">
                 <i class="fas fa-bars text-2xl"></i>
             </button>
         </nav>
-        <!-- Menu para telemóvel -->
-        <div id="mobile-menu" class="hidden md:hidden">
-            <div class="px-6 pt-2 pb-4 flex flex-col space-y-3">
-                <a href="#quem-somos" class="nav-link-mobile">Quem Somos</a>
-                <a href="#servicos" class="nav-link-mobile">Serviços</a>
-                <a href="#metodo" class="nav-link-mobile">Nosso Método</a>
-                <a href="#contato" class="mt-2 bg-brand-orange text-white text-center font-bold py-2 px-6 rounded-md btn-primary">Fale Conosco</a>
-            </div>
+
+        <div id="mobile-menu" class="fixed inset-0 bg-black/95 z-40 flex flex-col justify-center items-center opacity-0 pointer-events-none transition-all duration-500 backdrop-blur-xl">
+            <a href="#quem-somos" class="mobile-link text-5xl font-anton text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-600 mb-8 hover:text-brand transition-all">QUEM SOMOS</a>
+            <a href="#servicos" class="mobile-link text-5xl font-anton text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-600 mb-8 hover:text-brand transition-all">SERVIÇOS</a>
+            <a href="#metodo" class="mobile-link text-5xl font-anton text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-600 mb-8 hover:text-brand transition-all">MÉTODO</a>
         </div>
     </header>
 
     <main>
-        <!-- Secção Principal (Hero) -->
-        <section id="hero" class="min-h-screen flex items-center">
-            <div class="container mx-auto px-6 text-center">
-                <h1 class="text-5xl md:text-7xl lg:text-8xl font-anton uppercase fade-in">
-                    DOMINE SUA CONTABILIDADE.
-                    <br>
-                    <span class="brand-orange">CONFRONTE A BUROCRACIA.</span>
-                </h1>
-                <p class="text-lg md:text-xl max-w-3xl mx-auto mt-6 text-gray-300 fade-in" style="transition-delay: 200ms;">
-                    Somos uma contabilidade estratégica, focada em NUTRICIONISTAS e MÉDICOS. 
-                    Simplificamos suas finanças para que você possa focar no seu crescimento.
-                </p>
-                <div class="mt-10 fade-in" style="transition-delay: 400ms;">
-                    <a href="#servicos" class="bg-brand-orange text-white font-bold py-4 px-10 rounded-lg text-lg btn-primary">Conheça nossas soluções</a>
-                </div>
-                <div class="mt-8 fade-in" style="transition-delay: 400ms;">
-                    <!-- NÚMERO DE WHATSAPP AQUI -->
-                    <a href="https://wa.me/5547996816214?text=Ol%C3%A1%21+Vim+pelo+site+e+gostaria+de+saber+mais+sobre+a+CONFRONT." target="_blank" class="bg-brand-orange text-white font-bold py-4 px-10 rounded-lg text-lg btn-primary"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                </div>
+        <!-- HERO SECTION -->
+        <!-- FIX: Aumentei o pt-20 para pt-40 (padding-top) para descolar o texto do menu -->
+        <section class="relative min-h-screen flex items-center pt-40 overflow-hidden">
+            <div class="absolute inset-0 bg-[size:50px_50px] bg-grid-tech opacity-[0.07]"></div>
+            
+            <!-- Elemento Decorativo CF Gigante no Fundo -->
+            <div class="absolute top-1/2 right-0 transform translate-x-1/3 -translate-y-1/2 opacity-5 pointer-events-none select-none hidden lg:block">
+                 <svg width="800" height="800" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="100" cy="100" r="90" stroke="#CCFF00" stroke-width="2"/>
+                    <path d="M100 20 V180" stroke="#CCFF00" stroke-width="1"/>
+                    <text x="50" y="140" font-family="Anton" font-size="120" fill="#CCFF00" opacity="0.5">C</text>
+                    <text x="105" y="140" font-family="Anton" font-size="120" fill="#CCFF00" opacity="0.5">F</text>
+                 </svg>
             </div>
-        </section>
 
-        <!-- Secção "Quem Somos" -->
-        <section id="quem-somos" class="py-20 bg-black">
-            <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-                <div class="fade-in">
-                    <!-- CAMINHO CORRETO PARA A FOTO -->
-                    <img src="assets/foto-profissional.jpg" alt="Fundador da CONFRONT" class="rounded-lg shadow-2xl">
-                </div>
-                <div class="fade-in">
-                    <h2 class="text-4xl md:text-5xl font-anton brand-orange">QUEM SOMOS</h2>
-                    <p class="mt-4 text-lg text-gray-300">
-                        A CONFRONT é a inovação da contabilidade tradicional. Além de um escritório contábil, somos parceiros estratégicos dedicados a você e seus negócios. Somos ferramenta e suporte em todas as nuances financeiras para alcançar os seus objetivos com eficiência.
-                    </p>
-                    <p class="mt-4 text-gray-400">
-                        Nossa missão é traduzir a complexidade fiscal e financeira em linguagem clara e acionável, permitindo que você tome as melhores decisões para o seu negócio prosperar com segurança e previsibilidade.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Secção de Serviços -->
-        <section id="servicos" class="py-20" style="background-color: #050505;">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-4xl md:text-5xl font-anton brand-orange fade-in">NOSSOS SERVIÇOS</h2>
-                    <p class="text-lg text-gray-400 mt-2 fade-in" style="transition-delay: 100ms;">Soluções completas para a saúde financeira do seu negócio.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="section-card p-8 rounded-lg text-center fade-in"><i class="fas fa-calculator text-4xl brand-orange mb-4"></i><h3 class="text-2xl font-bold mb-3">Contabilidade</h3><p class="text-gray-400">Gestão completa de suas obrigações fiscais e contábeis. Relatórios claros, 100% digital e sem papelada.</p></div>
-                    <div class="section-card p-8 rounded-lg text-center fade-in" style="transition-delay: 200ms;"><i class="fas fa-hand-holding-dollar text-4xl brand-orange mb-4"></i><h3 class="text-2xl font-bold mb-3">BPO Financeiro</h3><p class="text-gray-400">Terceirize seu financeiro. Cuidamos das contas a pagar, receber e do fluxo de caixa para você ter total controle.</p></div>
-                    <div class="section-card p-8 rounded-lg text-center fade-in" style="transition-delay: 400ms;"><i class="fas fa-chart-line text-4xl brand-orange mb-4"></i><h3 class="text-2xl font-bold mb-3">Planejamento Financeiro e Tributário</h3><p class="text-gray-400">Nossa maior especialidade, intermediamos com instituições financeiras e instituições públicas. Análise e estratégia para garantir que você pague o mínimo de taxas e impostos legalmente e maximizando seus lucros.</p></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Secção Segurança Profissional -->
-        <section id="registro-profissional" class="py-20" style="background-color: #050505;">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-4xl md:text-5xl font-anton brand-orange fade-in">SEGURANÇA E REGULARIDADE</h2>
-                    <p class="text-lg text-gray-400 mt-2 fade-in" style="transition-delay: 100ms;">Entenda a importância do registro PJ no seu conselho de classe.</p>
-                </div>
-                <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                    <div class="section-card p-8 rounded-lg fade-in">
-                        <div class="flex items-center mb-4"><i class="fas fa-shield-halved text-3xl brand-orange mr-4"></i><h3 class="text-2xl font-bold">CRN para Pessoa Jurídica (PJ)</h3></div>
-                        <p class="text-gray-400">Para nutricionistas que atuam via CNPJ, o registro no Conselho Regional de Nutricionistas é obrigatório. Garantimos que sua empresa esteja 100% regularizada, evitando multas e permitindo que você atue com total segurança e credibilidade no mercado.</p>
+            <div class="container mx-auto px-6 relative z-30 pb-32">
+                <div class="max-w-7xl mx-auto text-center md:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 border border-brand/30 rounded-full mb-8 bg-brand/5 reveal">
+                        <span class="w-2 h-2 bg-brand rounded-full animate-pulse"></span>
+                        <span class="text-xs font-bold uppercase tracking-widest text-brand">Especialistas em Nutrição</span>
                     </div>
+
+                    <h1 class="text-6xl md:text-8xl lg:text-9xl font-anton text-white hero-text mb-8 reveal" style="transition-delay: 100ms;">
+                        DOMINE SUA <br>
+                        CONTABILIDADE. <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-white">CONFRONTE A BUROCRACIA.</span>
+                    </h1>
                     
-                    <div class="section-card p-8 rounded-lg fade-in" style="transition-delay: 200ms;">
-                        <div class="flex items-center mb-4"><i class="fas fa-shield-halved text-3xl brand-orange mr-4"></i><h3 class="text-2xl font-bold">CRM para Pessoa Jurídica (PJ)</h3></div>
-                        <p class="text-gray-400">Médico, sua clínica ou consultório precisa estar devidamente registrado no Conselho Regional de Medicina. Cuidamos de todo o processo, assegurando sua conformidade legal e a proteção da sua prática profissional contra quaisquer impedimentos.</p>
+                    <div class="flex flex-col md:flex-row items-end gap-12 reveal" style="transition-delay: 200ms;">
+                        <p class="text-gray-400 text-lg md:text-xl max-w-xl font-light leading-relaxed text-center md:text-left border-l-2 border-brand pl-6">
+                            Somos uma contabilidade estratégica, focada exclusivamente em <strong class="text-white">NUTRICIONISTAS</strong>. Simplificamos suas finanças para que você possa focar no seu crescimento.
+                        </p>
+                        
+                        <div class="flex gap-4 w-full md:w-auto justify-center md:justify-start">
+                            <a href="#servicos" class="btn-neon px-8 py-4 text-sm font-bold tracking-widest uppercase">
+                                Nossas Soluções
+                            </a>
+                            <a href="https://wa.me/5547996816214" class="px-8 py-4 border border-white/20 text-white text-sm font-bold tracking-widest uppercase hover:bg-white hover:text-black transition-all">
+                                WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marquee ajustado -->
+            <div class="absolute bottom-0 left-0 w-full marquee-strip py-3 overflow-hidden z-20 shadow-[0_0_20px_rgba(204,255,0,0.3)]">
+                <div class="whitespace-nowrap animate-marquee">
+                    <span class="text-xl font-anton mx-4">ESTRATÉGIA • LUCRO • TECNOLOGIA • NUTRIÇÃO • PERFORMANCE • ESTRATÉGIA • LUCRO • TECNOLOGIA • NUTRIÇÃO • PERFORMANCE •</span>
+                    <span class="text-xl font-anton mx-4">ESTRATÉGIA • LUCRO • TECNOLOGIA • NUTRIÇÃO • PERFORMANCE • ESTRATÉGIA • LUCRO • TECNOLOGIA • NUTRIÇÃO • PERFORMANCE •</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUEM SOMOS -->
+        <section id="quem-somos" class="py-32 relative bg-dark-base border-t border-dark-border">
+            <div class="container mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-20 items-center">
+                    
+                    <!-- Imagem: AERIAL RUNNING TRACK -->
+                    <div class="relative group reveal cursor-crosshair">
+                        <div class="absolute -inset-1 bg-brand opacity-20 group-hover:opacity-100 blur transition-opacity duration-500"></div>
+                        <div class="relative aspect-[3/4] overflow-hidden bg-dark-card border border-dark-border">
+                            <!-- Imagem de Superação -->
+                            <img src="https://images.unsplash.com/photo-1532444458054-01a7dd3e9fca?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" 
+                                 alt="Atletas na pista de corrida" 
+                                 class="w-full h-full object-cover hover-color-img">
+                            
+                            <!-- Overlay com a Marca CF -->
+                            <div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black to-transparent flex justify-between items-end">
+                                <div>
+                                    <h3 class="text-3xl font-anton text-white">SUPERAÇÃO</h3>
+                                    <p class="text-brand font-mono text-sm">STATUS: ALTA PERFORMANCE</p>
+                                </div>
+                                <div class="text-4xl font-anton text-white/10">CF</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Texto Original Integrado -->
+                    <div class="reveal space-y-8" style="transition-delay: 200ms;">
+                        <h2 class="text-5xl md:text-7xl font-anton text-white leading-none">
+                            QUEM <span class="text-brand">SOMOS</span>
+                        </h2>
+                        
+                        <div class="space-y-6 text-gray-400 font-light text-lg">
+                            <p>
+                                A CONFRONT é a inovação da contabilidade tradicional. Além de um escritório contábil, somos <strong class="text-white">parceiros estratégicos</strong> dedicados a você e seus negócios. Somos ferramenta e suporte em todas as nuances financeiras para alcançar os seus objetivos com eficiência.
+                            </p>
+                            <p class="border-l-4 border-brand pl-6 italic text-gray-300">
+                                "Nossa missão é traduzir a complexidade fiscal e financeira em linguagem clara e acionável, permitindo que você tome as melhores decisões para o seu negócio prosperar com segurança e previsibilidade."
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-8 pt-8 border-t border-dark-border">
+                            <div>
+                                <span class="block text-4xl font-anton text-white mb-2">100%</span>
+                                <span class="text-xs font-mono text-gray-500 uppercase">Segurança & Previsibilidade</span>
+                            </div>
+                            <div>
+                                <span class="block text-4xl font-anton text-white mb-2">24/7</span>
+                                <span class="text-xs font-mono text-gray-500 uppercase">Suporte Estratégico</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVIÇOS -->
+        <section id="servicos" class="py-32 bg-dark-surface relative">
+            <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-brand/5 to-transparent pointer-events-none"></div>
+
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-20 reveal">
+                    <div>
+                        <span class="text-brand font-mono text-xs mb-2 block">SOLUÇÕES COMPLETAS</span>
+                        <h2 class="text-5xl md:text-7xl font-anton text-white">NOSSOS SERVIÇOS</h2>
+                    </div>
+                    <p class="text-gray-500 max-w-xs text-right mt-6 md:mt-0 font-mono text-xs">
+                        // Soluções completas para a saúde <br>financeira do seu negócio.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Contabilidade -->
+                    <div class="tech-card col-span-1 md:col-span-2 p-10 reveal group">
+                        <div class="flex justify-between items-start mb-8">
+                            <i class="fas fa-calculator text-4xl text-brand"></i>
+                            <span class="bg-brand/10 text-brand px-2 py-1 text-[10px] font-bold uppercase border border-brand/20">Fiscal & Contábil</span>
+                        </div>
+                        <h3 class="text-3xl font-anton text-white mb-4 group-hover:text-brand transition-colors">Contabilidade</h3>
+                        <p class="text-gray-400 max-w-lg">
+                            Gestão completa de suas obrigações fiscais e contábeis. Relatórios claros, 100% digital e sem papelada.
+                        </p>
+                    </div>
+
+                    <!-- BPO -->
+                    <div class="tech-card col-span-1 p-10 reveal bg-dark-card border-l-4 border-l-white" style="transition-delay: 100ms;">
+                        <i class="fas fa-hand-holding-dollar text-3xl text-white mb-8"></i>
+                        <h3 class="text-2xl font-anton text-white mb-4">BPO Financeiro</h3>
+                        <p class="text-gray-500 text-sm">
+                            Terceirize seu financeiro. Cuidamos das contas a pagar, receber e do fluxo de caixa para você ter total controle.
+                        </p>
+                    </div>
+
+                    <!-- Planejamento -->
+                    <div class="tech-card col-span-1 bg-brand text-black p-10 reveal" style="transition-delay: 200ms;">
+                        <i class="fas fa-chart-line text-3xl mb-8"></i>
+                        <h3 class="text-2xl font-anton mb-4">Planejamento Tributário</h3>
+                        <p class="text-black/90 text-sm font-medium">
+                            Nossa maior especialidade. Intermediamos com instituições financeiras e públicas. Estratégia para garantir que você pague o mínimo de taxas legalmente, maximizando lucros.
+                        </p>
+                    </div>
+
+                    <!-- Card Extra (Layout) -->
+                    <div class="tech-card col-span-1 md:col-span-2 p-10 reveal" style="transition-delay: 300ms;">
+                        <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+                            <div>
+                                <h3 class="text-2xl font-anton text-white mb-2 flex items-center gap-3">
+                                    <i class="fas fa-user-shield text-brand"></i> SEGURANÇA PROFISSIONAL
+                                </h3>
+                                <p class="text-gray-400 text-sm">Para nutricionistas que atuam via CNPJ, o registro no Conselho Regional de Nutricionistas é obrigatório. Garantimos que sua empresa esteja 100% regularizada, evitando multas e permitindo que você atue com total segurança e credibilidade no mercado.</p>
+                            </div>
+                            <a href="https://wa.me/5547996816214" class="text-brand font-bold text-sm uppercase tracking-widest hover:text-white transition-colors">
+                                REGULARIZE AGORA <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Secção "Nosso Método" -->
-        <section id="metodo" class="py-20 bg-black">
+        <!-- MÉTODO -->
+        <section id="metodo" class="py-32 bg-dark-base relative border-t border-dark-border">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-12"><h2 class="text-4xl md:text-5xl font-anton brand-orange fade-in">NOSSO MÉTODO</h2><p class="text-lg text-gray-400 mt-2 fade-in" style="transition-delay: 100ms;">Um processo claro e transparente para o seu sucesso.</p></div>
-                <div class="max-w-4xl mx-auto space-y-8 relative">
-                    <div class="absolute left-4 top-2 h-full border-l-2 border-dashed border-gray-700"></div>
-                    <div class="flex items-start space-x-6 fade-in pl-12"><div class="bg-brand-orange text-black rounded-full w-8 h-8 flex items-center justify-center font-bold z-10">1</div><div><h3 class="text-2xl font-bold">Diagnóstico</h3><p class="text-gray-400 mt-1">Analisamos sua situação atual, seja você PF, PJ ou em transição, para entender suas metas e desafios.</p></div></div>
-                    <div class="flex items-start space-x-6 fade-in pl-12"><div class="bg-brand-orange text-black rounded-full w-8 h-8 flex items-center justify-center font-bold z-10">2</div><div><h3 class="text-2xl font-bold">Estratégia</h3><p class="text-gray-400 mt-1">Desenvolvemos um plano de ação personalizado, definindo o melhor regime tributário e a estrutura financeira ideal.</p></div></div>
-                    <div class="flex items-start space-x-6 fade-in pl-12"><div class="bg-brand-orange text-black rounded-full w-8 h-8 flex items-center justify-center font-bold z-10">3</div><div><h3 class="text-2xl font-bold">Execução</h3><p class="text-gray-400 mt-1">Implementamos a estratégia, cuidando de toda a burocracia de abertura ou migração de empresa e rotinas mensais.</p></div></div>
-                    <div class="flex items-start space-x-6 fade-in pl-12"><div class="bg-brand-orange text-black rounded-full w-8 h-8 flex items-center justify-center font-bold z-10">4</div><div><h3 class="text-2xl font-bold">Acompanhamento</h3><p class="text-gray-400 mt-1">Monitoramos seus resultados com relatórios mensais e reuniões periódicas para ajustar a rota e garantir seu crescimento contínuo.</p></div></div>
+                 <div class="flex flex-col md:flex-row justify-between items-end mb-20 reveal">
+                    <div>
+                        <span class="text-brand font-mono text-xs mb-2 block">PROCESSO CLARO</span>
+                        <h2 class="text-5xl md:text-7xl font-anton text-white">NOSSO MÉTODO</h2>
+                    </div>
+                    <p class="text-gray-500 max-w-xs text-right mt-6 md:mt-0 font-mono text-xs">
+                        // Transparência para o seu sucesso.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-4 gap-8">
+                    <!-- Passo 1 -->
+                    <div class="tech-card p-8 reveal group hover:bg-dark-surface">
+                        <span class="text-6xl font-anton text-dark-border group-hover:text-brand transition-colors mb-4 block">01</span>
+                        <h3 class="text-xl font-bold text-white mb-3">Diagnóstico</h3>
+                        <p class="text-gray-500 text-sm">Analisamos sua situação atual, seja você PF, PJ ou em transição, para entender suas metas e desafios.</p>
+                    </div>
+                    <!-- Passo 2 -->
+                    <div class="tech-card p-8 reveal group hover:bg-dark-surface" style="transition-delay: 100ms;">
+                        <span class="text-6xl font-anton text-dark-border group-hover:text-brand transition-colors mb-4 block">02</span>
+                        <h3 class="text-xl font-bold text-white mb-3">Estratégia</h3>
+                        <p class="text-gray-500 text-sm">Desenvolvemos um plano de ação personalizado, definindo o melhor regime tributário e a estrutura financeira ideal.</p>
+                    </div>
+                    <!-- Passo 3 -->
+                    <div class="tech-card p-8 reveal group hover:bg-dark-surface" style="transition-delay: 200ms;">
+                        <span class="text-6xl font-anton text-dark-border group-hover:text-brand transition-colors mb-4 block">03</span>
+                        <h3 class="text-xl font-bold text-white mb-3">Execução</h3>
+                        <p class="text-gray-500 text-sm">Implementamos a estratégia, cuidando de toda a burocracia de abertura ou migração de empresa e rotinas mensais.</p>
+                    </div>
+                    <!-- Passo 4 -->
+                    <div class="tech-card p-8 reveal group hover:bg-dark-surface" style="transition-delay: 300ms;">
+                        <span class="text-6xl font-anton text-dark-border group-hover:text-brand transition-colors mb-4 block">04</span>
+                        <h3 class="text-xl font-bold text-white mb-3">Acompanhamento</h3>
+                        <p class="text-gray-500 text-sm">Monitoramos seus resultados com relatórios mensais e reuniões periódicas para ajustar a rota e garantir seu crescimento.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Secção de Contato -->
-        <section id="contato" class="py-20 bg-brand-orange">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-4xl md:text-5xl font-anton text-black fade-in">ESTÁ PRONTO PARA TRANSFORMAR SUA GESTÃO?</h2>
-                <p class="text-lg md:text-xl max-w-3xl mx-auto mt-4 text-gray-900 fade-in" style="transition-delay: 200ms;">Clique no botão abaixo para falar diretamente conosco.</p>
-                <div class="mt-8 fade-in" style="transition-delay: 400ms;">
-                    <!-- ATENÇÃO: MUDE O SEU NÚMERO DE WHATSAPP AQUI -->
-                    <a href="https://wa.me/5547996816214?text=Ol%C3%A1%21+Vim+pelo+site+e+gostaria+de+saber+mais+sobre+a+CONFRONT." target="_blank" class="bg-black text-white font-bold py-4 px-10 rounded-lg text-lg transition-all hover:bg-gray-800 hover:transform hover:-translate-y-1"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                </div>
+        <!-- CTA FINAL -->
+        <section class="py-32 bg-brand flex items-center justify-center relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\' opacity=\'1\'/%3E%3C/svg%3E');"></div>
+            
+            <div class="container mx-auto px-6 text-center relative z-10">
+                <h2 class="text-5xl md:text-8xl font-anton text-black mb-6 reveal">
+                    ESTÁ PRONTO PARA <br>TRANSFORMAR?
+                </h2>
+                <p class="text-black/80 text-xl font-bold max-w-2xl mx-auto mb-10 reveal">
+                    Clique no botão abaixo para falar diretamente conosco.
+                </p>
+                <a href="https://wa.me/5547996816214?text=Ol%C3%A1%21+Vim+pelo+site+e+gostaria+de+saber+mais+sobre+a+CONFRONT." 
+                   target="_blank"
+                   class="inline-block bg-black text-white px-12 py-6 text-xl font-anton tracking-wider hover:scale-105 hover:bg-white hover:text-black transition-all shadow-2xl">
+                    FALAR NO WHATSAPP <i class="fab fa-whatsapp ml-2 text-brand"></i>
+                </a>
             </div>
         </section>
+
     </main>
 
-    <!-- Rodapé -->
-    <footer class="bg-black py-10">
-        <div class="container mx-auto px-6 text-center text-gray-500">
-            <a href="#"><img src="assets/logo.png" alt="Logo CONFRONT" class="h-12 mx-auto mb-4"></a>
-            <p class="mb-4">Confront Contabilidade e Finanças.</p>
-            <div class="flex justify-center space-x-6 mb-4 text-lg">
-                <!-- ATENÇÃO: MUDE O SEU NÚMERO E O SEU EMAIL AQUI -->
-                <a href="https://wa.me/5547996816214" target="_blank" class="hover:text-brand-orange transition-colors"><i class="fab fa-whatsapp"></i> (47)99681-6214</a>
-                <span>|</span>
-                <a href="mailto:confrontcontabilidade@gmail.com" class="hover:text-brand-orange transition-colors"><i class="fas fa-envelope"></i> Email</a>
+    <!-- FOOTER -->
+    <footer class="bg-black py-16 border-t border-gray-900">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
+            
+            <!-- Coluna 1: Branding -->
+            <div class="text-center md:text-left flex flex-col items-center md:items-start">
+                <div class="flex items-center gap-3 mb-4">
+                     <!-- Logo Pequena -->
+                    <div class="cf-icon w-8 h-8 text-sm">
+                        <div class="cf-icon-inner">
+                            <span class="cf-c font-anton">C</span>
+                            <span class="cf-f font-anton">F</span>
+                        </div>
+                    </div>
+                    <!-- Texto Logo -->
+                    <div class="flex items-center leading-none">
+                        <span class="text-xl font-anton text-white tracking-wide">CON</span>
+                        <span class="text-xl font-anton bg-brand text-black px-1 ml-0.5 tracking-wide transform -skew-x-12">FRONT</span>
+                    </div>
+                </div>
+                <p class="text-gray-400 font-bold text-sm">Confront Contabilidade e Finanças.</p>
+                <p class="text-gray-600 text-xs mt-2">© 2025. Todos os direitos reservados.</p>
             </div>
-            <!-- ATENÇÃO: MUDE SEUS DADOS LEGAIS AQUI -->
-            <p class="text-sm">Confront Contabilidade LTDA | CNPJ: 62.575.073/0001-69</p>
-            <p class="text-sm">CRC: 079260/O</p>
-            <p class="mt-6">&copy; 2025. Todos os direitos reservados.</p>
+            
+            <!-- Coluna 2: Contato e Legal -->
+            <div class="flex flex-col items-center md:items-end gap-4 text-center md:text-right">
+                
+                <!-- Links de Contato -->
+                <div class="flex flex-col md:flex-row gap-4 md:gap-8 items-center text-sm font-medium">
+                    <a href="https://wa.me/5547996816214" class="text-white hover:text-brand transition-colors flex items-center gap-2">
+                        <i class="fab fa-whatsapp text-brand text-lg"></i> (47) 99681-6214
+                    </a>
+                    <span class="hidden md:inline text-gray-700">|</span>
+                    <a href="mailto:confrontcontabilidade@gmail.com" class="text-white hover:text-brand transition-colors flex items-center gap-2">
+                        <i class="fas fa-envelope text-brand text-lg"></i> Email
+                    </a>
+                </div>
+
+                <!-- Dados Legais -->
+                <div class="text-gray-500 text-xs font-mono space-y-1">
+                    <p class="uppercase tracking-wide">Confront Contabilidade LTDA</p>
+                    <p>CNPJ: 62.575.073/0001-69</p>
+                    <p>CRC: 079260/O</p>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <!-- JavaScript Embutido -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-            mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
-            mobileMenuLinks.forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
-            const faders = document.querySelectorAll('.fade-in');
-            const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
-            const appearOnScroll = new IntersectionObserver((entries, appearOnScroll) => {
-                entries.forEach(entry => {
-                    if (!entry.isIntersecting) { return; }
-                    entry.target.classList.add('visible');
-                    appearOnScroll.unobserve(entry.target);
+            const cards = document.querySelectorAll('.tech-card');
+            document.addEventListener('mousemove', e => {
+                cards.forEach(card => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
                 });
-            }, appearOptions);
-            faders.forEach(fader => { appearOnScroll.observe(fader); });
+            });
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const links = document.querySelectorAll('.mobile-link');
+            let isOpen = false;
+
+            const toggle = () => {
+                isOpen = !isOpen;
+                if(isOpen) {
+                    menu.classList.remove('opacity-0', 'pointer-events-none');
+                    btn.innerHTML = '<i class="fas fa-times text-2xl"></i>';
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    menu.classList.add('opacity-0', 'pointer-events-none');
+                    btn.innerHTML = '<i class="fas fa-bars text-2xl"></i>';
+                    document.body.style.overflow = 'auto';
+                }
+            };
+
+            btn.addEventListener('click', toggle);
+            links.forEach(l => l.addEventListener('click', toggle));
         });
     </script>
 </body>
 </html>
-
