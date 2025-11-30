@@ -4,7 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CONFRONT | Contabilidade Inteligente para Nutricionistas</title>
-    <meta name="description" content="Contabilidade estratégica e tecnológica focada exclusivamente em nutricionistas. Abra sua empresa ou troque de contador com segurança.">
+    <meta name="description" content="Contabilidade estratégica e tecnológica focada em nutricionistas. Abra sua empresa ou troque de contador com segurança.">
+    
+    <!-- 
+        =======================================================================
+        INSTRUÇÕES PARA O DESIGNER / DESENVOLVEDOR - TROCA DE ASSETS
+        =======================================================================
+        
+        ESTRUTURA DE PASTAS SUGERIDA:
+        Crie uma pasta chamada 'assets' na mesma pasta deste arquivo index.html.
+        Dentro dela, coloque suas imagens novas.
+
+        NOMES DE ARQUIVOS SUGERIDOS:
+        1. Logo Completa (Topo): assets/logo-header.png (Use fundo transparente)
+        2. Logo Completa (Rodapé): assets/logo-footer.png (Versão branca/negativa)
+        3. Favicon (Ícone da aba): assets/favicon.png
+        4. Imagem Hero (Mulher/Topo): assets/hero-image.jpg
+        5. Imagem Destaque (Pista): assets/destaque-performance.jpg
+        6. Imagem Profissional (Quem Somos): assets/foto-profissional.jpg
+
+        COMO TROCAR A LOGO NO CÓDIGO:
+        Vá até as seções marcadas com "ÁREA DA LOGO" (Header e Footer).
+        Lá você encontrará o código atual (CSS) e o código comentado para imagem.
+        Basta apagar o bloco CSS e descomentar a tag <img>.
+        =======================================================================
+    -->
+
     <link rel="icon" type="image/png" href="assets/logo.png">
 
     <!-- Tailwind CSS -->
@@ -282,7 +307,9 @@
     <header class="fixed w-full z-50 glass-header transition-all duration-300" id="navbar">
         <nav class="container mx-auto px-6 h-20 flex justify-between items-center">
             
+            <!-- [ÁREA DA LOGO - HEADER] -->
             <a href="#" class="group flex items-center gap-3">
+                <!-- INICIO LOGO EM CODIGO -->
                 <div class="cf-icon">
                     <div class="cf-icon-inner">
                         <span class="cf-c">C</span>
@@ -296,9 +323,12 @@
                     </div>
                     <span class="text-[9px] uppercase tracking-[0.3em] text-brand font-medium mt-0.5">Contabilidade</span>
                 </div>
+                <!-- FIM LOGO EM CODIGO -->
             </a>
 
+            <!-- Menu Desktop REORDENADO -->
             <div class="hidden md:flex items-center gap-8">
+                <a href="#quem-somos" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Quem Somos</a>
                 <a href="#servicos" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Serviços</a>
                 <a href="#metodo" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Como Funciona</a>
                 <a href="#faq" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Dúvidas</a>
@@ -306,10 +336,10 @@
 
             <div class="hidden md:flex gap-4">
                 <a href="https://wa.me/5547996816214?text=Ol%C3%A1%2C+tenho+d%C3%BAvidas+relacionadas+a+contabilidade." target="_blank" class="text-sm font-bold text-white hover:text-brand transition-colors flex items-center gap-2">
-                    <i class="fab fa-whatsapp"></i> Falar com Especialista
+                    <i class="fab fa-whatsapp"></i> Falar com a Confront
                 </a>
-                <a href="https://wa.me/5547996816214?text=Ol%C3%A1%2C+sou+cliente+e+gostaria+de+atendimento." target="_blank" class="bg-white text-black px-5 py-2 rounded-lg text-sm font-bold hover:bg-brand transition-colors">
-                    Área do Cliente
+                <!-- <a href="https://wa.me/5547996816214?text=Ol%C3%A1%2C+sou+cliente+e+gostaria+de+atendimento." target="_blank" class="bg-white text-black px-5 py-2 rounded-lg text-sm font-bold hover:bg-brand transition-colors"> -->
+                <!--    Área do Cliente   -->
                 </a>
             </div>
 
@@ -319,6 +349,7 @@
         </nav>
 
         <div id="mobile-menu" class="fixed inset-0 bg-dark-base/95 backdrop-blur-xl z-40 hidden flex-col justify-center items-center gap-8 p-6">
+            <a href="#quem-somos" class="text-2xl font-bold text-white mobile-link">Quem Somos</a>
             <a href="#servicos" class="text-2xl font-bold text-white mobile-link">Serviços</a>
             <a href="#metodo" class="text-2xl font-bold text-white mobile-link">Como Funciona</a>
             <a href="https://wa.me/5547996816214?text=Ol%C3%A1%2C+tenho+d%C3%BAvidas+relacionadas+a+contabilidade." target="_blank" class="btn-primary w-full justify-center">Falar no WhatsApp</a>
@@ -337,16 +368,17 @@
                     <div class="lg:w-1/2 text-center lg:text-left reveal">
                         <div class="inline-flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 rounded-full mb-6">
                             <span class="w-2 h-2 bg-brand rounded-full animate-pulse"></span>
-                            <span class="text-xs font-bold uppercase tracking-widest text-brand">Especialistas em Nutrição</span>
+                            <span class="text-xs font-bold uppercase tracking-widest text-brand">Foco em Nutricionistas</span>
                         </div>
 
                         <h1 class="text-5xl lg:text-7xl font-display font-bold text-white leading-tight mb-6">
-                            Contabilidade completa, <br>
-                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-white">sem burocracia.</span>
+                            DOMINE SUA <br>
+                            CONTABILIDADE. <br>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-white">CONFRONTE A BUROCRACIA.</span>
                         </h1>
                         
                         <p class="text-gray-400 text-lg mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed">
-                            Simplifique sua rotina financeira com a Confront. Abra sua empresa grátis ou troque de contador sem dor de cabeça. Tecnologia e atendimento humano em um só lugar.
+                            Somos uma contabilidade estratégica, focada em <strong class="text-white">NUTRICIONISTAS</strong>. Simplificamos suas finanças para que você possa focar no seu crescimento.
                         </p>
                         
                         <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -368,16 +400,18 @@
                     <div class="lg:w-1/2 w-full reveal" style="transition-delay: 0.2s;">
                         <div class="relative rounded-2xl overflow-hidden border border-dark-border shadow-2xl shadow-brand/10 group interactive-element">
                             <div class="absolute inset-0 bg-gradient-to-t from-dark-base via-transparent to-transparent opacity-60 z-10 pointer-events-none"></div>
+                            
+                            <!-- [TROCAR IMAGEM HERO AQUI] -->
                             <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
                                  alt="Gestão Financeira" 
                                  class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700 hover-color-img filter grayscale">
                             
-                            <!-- CARD INTERATIVO QUE ABRE MODAL -->
+                            <!-- Card Interativo -->
                             <button id="open-modal-btn" class="absolute bottom-6 left-6 right-6 bg-dark-card/90 backdrop-blur-md p-6 rounded-xl border border-white/10 z-20 text-left hover:border-brand transition-colors cursor-pointer group-btn">
                                 <div class="flex items-center justify-between">
                                     <div>
-                                        <p class="text-xs text-brand font-bold uppercase tracking-wider mb-1">Iniciando a Carreira?</p>
-                                        <p class="text-xl font-bold text-white mb-1">Programa Início de Carreira</p>
+                                        <p class="text-xs text-brand font-bold uppercase tracking-wider mb-1">Partindo do zero?</p>
+                                        <p class="text-xl font-bold text-white mb-1">Programa Início de Carreira e Negócios</p>
                                         <p class="text-xs text-gray-400">Clique para conhecer condições especiais.</p>
                                     </div>
                                     <div class="h-10 w-10 bg-white group-hover:bg-brand rounded-full flex items-center justify-center text-black transition-colors">
@@ -396,8 +430,8 @@
             <div class="container mx-auto px-6">
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                     <div class="flex flex-col items-center">
-                        <span class="text-3xl font-bold text-white font-display">+200</span>
-                        <span class="text-xs text-gray-500 uppercase tracking-wider mt-1">Nutricionistas Atendidos</span>
+                        <span class="text-3xl font-bold text-white font-display">ZERO IA</span>
+                        <span class="text-xs text-gray-500 uppercase tracking-wider mt-1">Atendimento 100% humano</span>
                     </div>
                     <div class="flex flex-col items-center">
                         <span class="text-3xl font-bold text-white font-display">100%</span>
@@ -419,8 +453,62 @@
             </div>
         </section>
 
-        <!-- SERVIÇOS -->
-        <section id="servicos" class="py-24 bg-dark-base relative">
+        <!-- ORDEM: QUEM SOMOS (Agora aqui em cima) -->
+        <section id="quem-somos" class="py-16 relative bg-dark-base border-t border-dark-border">
+            <div class="container mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-20 items-center">
+                    
+                    <div class="relative group interactive-element reveal cursor-crosshair">
+                        <div class="absolute -inset-1 bg-brand neon-border opacity-20 blur transition-opacity duration-500"></div>
+                        <div class="relative aspect-[3/4] overflow-hidden bg-dark-card border border-dark-border">
+                            
+                            <!-- [TROCAR FOTO PROFISSIONAL AQUI] -->
+                            <img src="https://images.unsplash.com/photo-1532444458054-01a7dd3e9fca?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" 
+                                 alt="Atletas na pista de corrida" 
+                                 class="w-full h-full object-cover hover-color-img">
+                            
+                            <div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black to-transparent flex justify-between items-end">
+                                <div>
+                                    <h3 class="text-3xl font-anton text-white">SUPERAÇÃO</h3>
+                                    <p class="text-brand font-mono text-sm">STATUS: ALTA PERFORMANCE</p>
+                                </div>
+                                <div class="text-4xl font-anton text-white/10">CF</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reveal space-y-8" style="transition-delay: 200ms;">
+                        <h2 class="text-5xl md:text-7xl font-anton text-white leading-none">
+                            QUEM <span class="text-brand">SOMOS</span>
+                        </h2>
+                        
+                        <div class="space-y-6 text-gray-400 font-light text-lg">
+                            <p>
+                                A CONFRONT é a inovação da contabilidade tradicional. Além de um escritório contábil, somos <strong class="text-white">parceiros estratégicos</strong> dedicados a você e seus negócios. Somos ferramenta e suporte em todas as nuances financeiras para alcançar os seus objetivos com eficiência.
+                            </p>
+                            <p class="border-l-4 border-brand pl-6 italic text-gray-300">
+                                "Nossa missão é traduzir a complexidade fiscal e financeira em linguagem clara e acionável, permitindo que você tome as melhores decisões para o seu negócio prosperar com segurança e previsibilidade."
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-8 pt-8 border-t border-dark-border">
+                            <div>
+                                <span class="block text-4xl font-anton text-white mb-2">100%</span>
+                                <span class="text-xs font-mono text-gray-500 uppercase">Segurança & Previsibilidade</span>
+                            </div>
+                            <div>
+                                <span class="block text-4xl font-anton text-white mb-2">24/7</span>
+                                <span class="text-xs font-mono text-gray-500 uppercase">Suporte Estratégico</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ORDEM: SERVIÇOS -->
+        <section id="servicos" class="py-24 bg-dark-surface relative border-y border-dark-border">
             <div class="container mx-auto px-6">
                 <div class="text-center max-w-3xl mx-auto mb-16 reveal">
                     <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Tudo o que sua nutrição precisa</h2>
@@ -455,9 +543,9 @@
 
                     <div class="service-card reveal">
                         <div class="card-icon-box"><i class="fas fa-user-shield"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-3">Regularização CRN</h3>
+                        <h3 class="text-xl font-bold text-white mb-3">Certificado Digital Incluso</h3>
                         <p class="text-gray-400 text-sm leading-relaxed">
-                            Cadastramos e regularizamos seu consultório junto ao Conselho Regional de Nutricionistas.
+                            Identidade eletrônica que permite a assinatura digital de documentos com validade jurídica, garantindo autenticidade e integridade.
                         </p>
                     </div>
 
@@ -480,7 +568,28 @@
             </div>
         </section>
 
-        <!-- COMO FUNCIONA -->
+        <!-- SEGURANÇA PROFISSIONAL -->
+        <section class="py-16 bg-dark-base border-b border-dark-border">
+            <div class="container mx-auto px-6">
+                <div class="bg-dark-card border border-brand/20 rounded-2xl p-8 md:p-12 relative overflow-hidden reveal">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-brand/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
+                    
+                    <div class="flex flex-col md:flex-row items-center gap-8 relative z-10">
+                        <div class="h-20 w-20 bg-brand/10 rounded-full flex items-center justify-center text-brand flex-shrink-0">
+                            <i class="fas fa-shield-alt text-4xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl md:text-3xl font-bold text-white mb-3">SEGURANÇA PROFISSIONAL</h3>
+                            <p class="text-gray-400 text-lg leading-relaxed">
+                                Para nutricionistas que atuam via CNPJ, o registro no Conselho Regional de Nutricionistas é obrigatório. Garantimos que sua empresa esteja <strong class="text-white">100% regularizada</strong>, evitando multas e permitindo que você atue com total segurança e credibilidade no mercado.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ORDEM: COMO FUNCIONA -->
         <section id="metodo" class="py-24 bg-dark-surface border-y border-dark-border">
             <div class="container mx-auto px-6">
                 <div class="mb-16 reveal">
@@ -492,41 +601,43 @@
                     <div class="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-dark-border -z-0"></div>
 
                     <div class="relative z-10 reveal group">
-                        <div class="w-24 h-24 bg-dark-card border border-dark-border rounded-full flex items-center justify-center mb-6 mx-auto group-hover:border-brand group-hover:text-brand transition-colors text-2xl font-bold text-white shadow-lg">1</div>
+                        <div class="w-24 h-24 bg-dark-card border border-dark-border rounded-full flex items-center justify-center mb-6 mx-auto group-hover:border-brand group-hover:text-brand transition-colors text-2xl font-bold text-white shadow-lg">01</div>
                         <h3 class="text-lg font-bold text-white text-center mb-2">Diagnóstico</h3>
-                        <p class="text-sm text-gray-500 text-center">Entendemos seu momento atual e definimos a melhor estratégia (PF ou PJ).</p>
+                        <p class="text-sm text-gray-500 text-center">Analisamos sua situação atual, seja você PF, PJ ou em transição, para entender suas metas e desafios.</p>
                     </div>
 
                     <div class="relative z-10 reveal group" style="transition-delay: 0.1s;">
-                        <div class="w-24 h-24 bg-dark-card border border-dark-border rounded-full flex items-center justify-center mb-6 mx-auto group-hover:border-brand group-hover:text-brand transition-colors text-2xl font-bold text-white shadow-lg">2</div>
-                        <h3 class="text-lg font-bold text-white text-center mb-2">Contratação</h3>
-                        <p class="text-sm text-gray-500 text-center">Assinatura digital do contrato e envio de documentos pela plataforma.</p>
+                        <div class="w-24 h-24 bg-dark-card border border-dark-border rounded-full flex items-center justify-center mb-6 mx-auto group-hover:border-brand group-hover:text-brand transition-colors text-2xl font-bold text-white shadow-lg">02</div>
+                        <h3 class="text-lg font-bold text-white text-center mb-2">Estratégia</h3>
+                        <p class="text-sm text-gray-500 text-center">Desenvolvemos um plano de ação personalizado, definindo o melhor regime tributário e a estrutura financeira ideal.</p>
                     </div>
 
                     <div class="relative z-10 reveal group" style="transition-delay: 0.2s;">
-                        <div class="w-24 h-24 bg-dark-card border border-dark-border rounded-full flex items-center justify-center mb-6 mx-auto group-hover:border-brand group-hover:text-brand transition-colors text-2xl font-bold text-white shadow-lg">3</div>
+                        <div class="w-24 h-24 bg-dark-card border border-dark-border rounded-full flex items-center justify-center mb-6 mx-auto group-hover:border-brand group-hover:text-brand transition-colors text-2xl font-bold text-white shadow-lg">03</div>
                         <h3 class="text-lg font-bold text-white text-center mb-2">Execução</h3>
-                        <p class="text-sm text-gray-500 text-center">Nós cuidamos da burocracia, abertura de CNPJ e regularizações.</p>
+                        <p class="text-sm text-gray-500 text-center">Implementamos a estratégia, cuidando de toda a burocracia de abertura ou migração de empresa e rotinas mensais.</p>
                     </div>
 
                     <div class="relative z-10 reveal group" style="transition-delay: 0.3s;">
-                        <div class="w-24 h-24 bg-dark-card border border-dark-border rounded-full flex items-center justify-center mb-6 mx-auto group-hover:border-brand group-hover:text-brand transition-colors text-2xl font-bold text-white shadow-lg">4</div>
-                        <h3 class="text-lg font-bold text-white text-center mb-2">Rotina</h3>
-                        <p class="text-sm text-gray-500 text-center">Sua empresa roda tranquila. Impostos e obrigações em dia, todo mês.</p>
+                        <div class="w-24 h-24 bg-dark-card border border-dark-border rounded-full flex items-center justify-center mb-6 mx-auto group-hover:border-brand group-hover:text-brand transition-colors text-2xl font-bold text-white shadow-lg">04</div>
+                        <h3 class="text-lg font-bold text-white text-center mb-2">Acompanhamento</h3>
+                        <p class="text-sm text-gray-500 text-center">Monitoramos seus resultados com relatórios mensais e reuniões periódicas para ajustar a rota e garantir seu crescimento.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- IMAGEM DESTAQUE (Pista de Atletismo - Superação) -->
+        <!-- ORDEM: SAIA NA FRENTE (Imagem Performance) -->
         <section class="py-20 relative overflow-hidden">
             <div class="container mx-auto px-6">
                 <div class="relative rounded-2xl overflow-hidden aspect-video md:aspect-[21/9] border border-dark-border group interactive-element">
                     <div class="absolute inset-0 border-2 border-brand opacity-0 neon-border transition-opacity duration-700 z-20 pointer-events-none"></div>
-                    <!-- Imagem de Pista de Atletismo / Largada -->
+                    
+                    <!-- [TROCAR IMAGEM DESTAQUE AQUI] -->
                     <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80" 
                          alt="Pista de Atletismo - Superação" 
                          class="w-full h-full object-cover filter grayscale contrast-125 transition-all duration-1000 hover-color-img">
+                    
                     <div class="absolute bottom-0 left-0 w-full p-8 md:p-12 bg-gradient-to-t from-black via-black/80 to-transparent z-10">
                         <h3 class="text-3xl md:text-5xl font-impact text-white mb-2">SAIA NA FRENTE</h3>
                         <p class="text-brand font-mono text-sm md:text-base tracking-widest">PERFORMANCE FINANCEIRA PARA QUEM QUER CHEGAR LONGE</p>
@@ -535,14 +646,14 @@
             </div>
         </section>
 
-        <!-- FAQ -->
+        <!-- ORDEM: DÚVIDAS (FAQ) -->
         <section id="faq" class="py-24 bg-dark-base">
             <div class="container mx-auto px-6 max-w-3xl">
                 <h2 class="text-3xl font-bold text-white text-center mb-12">Perguntas Frequentes</h2>
                 <div class="space-y-4">
                     <div class="faq-item">
                         <button class="faq-button text-white"><span>A Confront atende apenas Nutricionistas?</span><i class="fas fa-chevron-down faq-icon"></i></button>
-                        <div class="faq-content"><p class="pb-4 text-sm">Sim, somos especialistas. Focamos 100% em nutricionistas para garantir que entendemos profundamente a legislação, os benefícios fiscais e a rotina do seu consultório.</p></div>
+                        <div class="faq-content"><p class="pb-4 text-sm">Somos especialistas na área da nutrição. Entendemos profundamente a legislação, os benefícios fiscais e a rotina, 90% dos nossos parceiros são da área da nutrição. Atendemos outros negócios da área da saúde, acompanhamos o crescimento dos nossos parceiros.</p></div>
                     </div>
                     <div class="faq-item">
                         <button class="faq-button text-white"><span>Preciso de contador para abrir empresa?</span><i class="fas fa-chevron-down faq-icon"></i></button>
@@ -566,7 +677,7 @@
             <div class="container mx-auto px-6 text-center relative z-10">
                 <h2 class="text-4xl md:text-6xl font-impact text-black mb-6">PRONTO PARA TRANSFORMAR SUA GESTÃO?</h2>
                 <p class="text-black/80 text-xl font-medium max-w-2xl mx-auto mb-10">
-                    Confront e você juntos.
+                    Confront, você e seu negócio juntos.
                 </p>
                 <a href="https://wa.me/5547996816214?text=Ol%C3%A1%2C+tenho+d%C3%BAvidas+relacionadas+a+contabilidade." target="_blank" class="inline-block bg-black text-white px-10 py-5 rounded-lg text-lg font-bold hover:scale-105 transition-transform shadow-2xl">
                     FALAR NO WHATSAPP AGORA
@@ -581,10 +692,14 @@
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                 <div class="md:col-span-2">
+                    
+                    <!-- [ÁREA DA LOGO - FOOTER] -->
                     <div class="flex items-center gap-2 mb-4">
                         <div class="cf-icon w-8 h-8 text-sm"><div class="cf-icon-inner"><span class="cf-c font-anton">C</span><span class="cf-f font-anton">F</span></div></div>
                         <span class="text-xl font-impact text-white tracking-wide">CONFRONT</span>
                     </div>
+                    <!-- [FIM ÁREA DA LOGO] -->
+
                     <p class="text-gray-500 max-w-sm mb-6">Escritório de contabilidade digital especializado em Nutricionistas. Unimos tecnologia e inteligência tributária para o seu crescimento.</p>
                     <div class="flex gap-4">
                         <a href="#" class="w-10 h-10 rounded bg-dark-surface flex items-center justify-center text-gray-400 hover:bg-brand hover:text-black transition-colors"><i class="fab fa-instagram"></i></a>
@@ -632,15 +747,15 @@
                 <p class="text-brand font-medium text-sm uppercase tracking-widest mb-6">PROGRAMA PARA INÍCIO DE CARREIRA</p>
                 
                 <p class="text-gray-400 text-lg leading-relaxed mb-8">
-                    Seja você recém-formado, autônomo em transição ou iniciando do zero, criamos uma condição exclusiva onde cobramos <strong class="text-white">apenas o custo operacional</strong> nos primeiros meses*.
+                    Seja você recém-formado, ou iniciando do zero, criamos uma condição exclusiva onde cobramos <strong class="text-white">apenas o custo operacional</strong> nos primeiros meses*.
                     <br><br>
                     Queremos ser sócios do seu sucesso, não mais um boleto.
                 </p>
                 
-                <p class="text-[10px] text-gray-600 mb-6">*Válido por 6 meses ou até atingir faturamento de R$ 4.000,00.</p>
+                <p class="text-[10px] text-gray-600 mb-6">*Válido por 6 meses ou até a receita de R$ 3.000,00 (PF+PJ).</p>
 
                 <a href="https://wa.me/5547996816214?text=Ol%C3%A1%2C+gostaria+de+saber+mais+sobre+o+Programa+de+In%C3%ADcio+de+Carreira." target="_blank" class="btn-primary w-full justify-center">
-                    Falar com Especialista sobre o Programa
+                    Falar sobre o Programa
                 </a>
             </div>
         </div>
