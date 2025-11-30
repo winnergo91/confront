@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# Aponta o caminho do sitemap para os robôs
+# TROQUE PELO SEU DOMÍNIO REAL ABAIXO
+Sitemap: https://www.confront.com.br/sitemap.xml
