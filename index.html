@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CONFRONT | Contabilidade para Nutricionistas</title>
-    <meta name="description" content="Contabilidade estratégica focada exclusivamente em nutricionistas.">
-    <!-- ATENÇÃO: Para usar seu favicon real, coloque o arquivo 'favicon.png' na pasta assets -->
+    <title>CONFRONT | Contabilidade Inteligente para Nutricionistas</title>
+    <meta name="description" content="Contabilidade estratégica e tecnológica focada exclusivamente em nutricionistas. Abra sua empresa ou troque de contador com segurança.">
     <link rel="icon" type="image/png" href="assets/logo.png">
 
     <!-- Tailwind CSS -->
@@ -18,33 +17,37 @@
                 extend: {
                     colors: {
                         brand: {
-                            DEFAULT: '#CCFF00', /* Verde Neon/Acid - Mantido pois você curtiu */
+                            DEFAULT: '#CCFF00', /* Verde Neon/Acid */
                             dim: '#708238',     
                             glow: 'rgba(204, 255, 0, 0.6)'
                         },
                         dark: {
-                            base: '#030303',
-                            surface: '#0A0A0A',
-                            card: '#111111',
-                            border: '#222222'
+                            base: '#050505',    /* Preto Profundo */
+                            surface: '#0F0F0F', /* Cinza Muito Escuro */
+                            card: '#141414',    /* Card Sutil */
+                            border: '#262626'   /* Borda Sutil */
                         }
                     },
                     fontFamily: {
                         anton: ['Anton', 'sans-serif'],
                         space: ['Space Grotesk', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
                     },
                     backgroundImage: {
                         'grid-tech': "linear-gradient(to right, #1a1a1a 1px, transparent 1px), linear-gradient(to bottom, #1a1a1a 1px, transparent 1px)",
                     },
                     animation: {
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'marquee': 'marquee 25s linear infinite',
-                        'spin-slow': 'spin 10s linear infinite',
+                        'marquee': 'marquee 30s linear infinite',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
                     },
                     keyframes: {
                         marquee: {
                             '0%': { transform: 'translateX(0)' },
                             '100%': { transform: 'translateX(-50%)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
                         }
                     }
                 }
@@ -55,7 +58,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@300;400;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -63,12 +66,21 @@
     <style>
         /* Estilos Globais */
         body {
-            font-family: 'Space Grotesk', sans-serif;
-            background-color: #030303;
+            font-family: 'Inter', sans-serif;
+            background-color: #050505;
             color: #EDEDED;
             overflow-x: hidden;
         }
 
+        h1, h2, h3, h4, .font-display {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .font-impact {
+            font-family: 'Anton', sans-serif;
+        }
+
+        /* Noise */
         .noise-overlay {
             position: fixed;
             top: 0;
@@ -77,126 +89,107 @@
             height: 100%;
             pointer-events: none;
             z-index: 9999;
-            opacity: 0.05;
+            opacity: 0.03;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
         }
 
-        .hero-text {
-            line-height: 0.85;
-            letter-spacing: -0.02em;
+        .glass-header {
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .glass-dark {
-            background: rgba(10, 10, 10, 0.6);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .tech-card {
-            background: #0A0A0A;
-            border: 1px solid #222;
-            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        /* --- CARDS --- */
+        .service-card {
+            background: #141414;
+            border: 1px solid #262626;
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
             position: relative;
-            overflow: hidden;
+            z-index: 1;
         }
         
-        .tech-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.06), transparent 40%);
-            opacity: 0;
-            transition: opacity 0.4s;
-            pointer-events: none;
-        }
-        
-        .tech-card:hover::before {
-            opacity: 1;
-        }
-        
-        .tech-card:hover {
+        .service-card:hover {
             border-color: #CCFF00;
-            transform: translateY(-5px);
-            box-shadow: 0 0 30px rgba(204, 255, 0, 0.1);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 40px -10px rgba(204, 255, 0, 0.1);
         }
 
-        .hover-color-img {
-            filter: grayscale(100%) contrast(1.2);
-            transition: filter 0.5s ease, transform 0.7s ease;
-        }
-        .group:hover .hover-color-img {
-            filter: grayscale(0%) contrast(1);
-            transform: scale(1.03);
-        }
-
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #000;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #333;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #CCFF00;
+        .card-icon-box {
+            width: 56px;
+            height: 56px;
+            background: rgba(204, 255, 0, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #CCFF00;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
         }
 
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .btn-neon {
+        /* --- BOTÕES --- */
+        .btn-primary {
             background-color: #CCFF00;
             color: #000;
             font-weight: 700;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
         }
-        .btn-neon::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 100%;
-            background-color: #FFFFFF;
-            transition: width 0.3s ease;
-            z-index: -1;
+        .btn-primary:hover {
+            background-color: #DFFF40;
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(204, 255, 0, 0.3);
         }
-        .btn-neon:hover::after {
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #333;
+            color: #FFF;
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .btn-outline:hover {
+            border-color: #CCFF00;
+            color: #CCFF00;
+        }
+
+        /* --- FAQ --- */
+        .faq-item { border-bottom: 1px solid #262626; }
+        .faq-button {
             width: 100%;
+            text-align: left;
+            padding: 1.5rem 0;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .btn-neon:hover {
-            box-shadow: 0 0 20px #CCFF00;
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: #A3A3A3;
         }
+        .faq-item.active .faq-content { max-height: 200px; padding-bottom: 1.5rem; }
+        .faq-icon { transition: transform 0.3s; }
+        .faq-item.active .faq-icon { transform: rotate(180deg); color: #CCFF00; }
 
-        .marquee-strip {
-            background: #CCFF00;
-            color: #000;
-            transform: rotate(-1deg) scale(1.02);
-            border-top: 1px solid #fff;
-            border-bottom: 1px solid #fff;
-        }
-
-        /* CF MONOGRAM ICON CSS */
+        /* --- LOGO --- */
         .cf-icon {
             font-family: 'Anton', sans-serif;
             position: relative;
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -204,13 +197,9 @@
             border-radius: 50%;
             border: 2px solid #CCFF00;
             color: #CCFF00;
-            font-size: 20px;
+            font-size: 18px;
             line-height: 1;
             overflow: hidden;
-        }
-        .cf-icon span {
-            position: relative;
-            z-index: 2;
         }
         .cf-icon::before {
             content: '';
@@ -222,301 +211,365 @@
             top: 0;
             z-index: 1;
         }
-        .cf-icon-inner {
-            position: relative;
-            z-index: 10;
-            display: flex;
+        .cf-icon-inner { position: relative; z-index: 10; display: flex; }
+        .cf-c { color: #CCFF00; margin-right: -1px; }
+        .cf-f { color: #000; margin-left: -1px;}
+
+        /* --- IMAGEM DESTAQUE --- */
+        .hover-color-img {
+            filter: grayscale(100%) contrast(1.2);
+            transition: filter 0.8s ease, transform 0.8s ease; 
+            transition-delay: 0s; 
         }
-        .cf-c { color: #CCFF00; margin-right: -2px; }
-        .cf-f { color: #000; margin-left: -2px;}
+        .group:hover .hover-color-img,
+        .group.scroll-active .hover-color-img {
+            filter: grayscale(0%) contrast(1);
+            transform: scale(1.03);
+            transition-delay: 0.5s; 
+        }
+        .neon-border {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            transition-delay: 0s;
+        }
+        .group:hover .neon-border,
+        .group.scroll-active .neon-border {
+            opacity: 1;
+            transition-delay: 0.5s; 
+        }
+
+        /* --- MODAL --- */
+        .modal {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+        .modal.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal.open .modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+        .modal-content {
+            transform: scale(0.95);
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #CCFF00; }
         
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
-<body class="selection:bg-brand selection:text-black">
+<body class="antialiased selection:bg-brand selection:text-black">
 
     <div class="noise-overlay"></div>
 
     <!-- Navegação -->
-    <header class="fixed w-full z-50 glass-dark transition-all duration-300" id="navbar">
-        <nav class="container mx-auto px-6 py-5 flex justify-between items-center">
+    <header class="fixed w-full z-50 glass-header transition-all duration-300" id="navbar">
+        <nav class="container mx-auto px-6 h-20 flex justify-between items-center">
             
-            <!-- LOGO MODIFICADA COM A INSPIRAÇÃO DAS IMAGENS -->
-            <!-- NOTA: Se quiser usar sua imagem PNG real, substitua todo este bloco <a> por: 
-                 <a href="#"><img src="assets/sua-logo.png" alt="Confront" class="h-12"></a> 
-            -->
-            <a href="#" class="relative z-50 group flex items-center gap-3">
-                <!-- Ícone CF Recriado em CSS -->
-                <div class="cf-icon group-hover:rotate-180 transition-transform duration-700">
+            <a href="#" class="group flex items-center gap-3">
+                <div class="cf-icon">
                     <div class="cf-icon-inner">
-                        <span class="cf-c font-anton">C</span>
-                        <span class="cf-f font-anton">F</span>
+                        <span class="cf-c">C</span>
+                        <span class="cf-f">F</span>
                     </div>
-                    <!-- Half background logic applied in CSS above -->
                 </div>
-
                 <div class="flex flex-col">
-                    <!-- Texto CON + FRONT em Bloco (Inspirado na imagem_39b87a.png) -->
                     <div class="flex items-center leading-none">
-                        <span class="text-2xl font-anton text-white tracking-wide">CON</span>
-                        <span class="text-2xl font-anton bg-brand text-black px-1 ml-0.5 tracking-wide transform -skew-x-12">FRONT</span>
+                        <span class="text-xl font-impact text-white tracking-wide">CON</span>
+                        <span class="text-xl font-impact bg-brand text-black px-1 ml-0.5 tracking-wide transform -skew-x-12">FRONT</span>
                     </div>
-                    <span class="text-[9px] uppercase tracking-[0.4em] text-brand mt-1">Contabilidade</span>
+                    <span class="text-[9px] uppercase tracking-[0.3em] text-brand font-medium mt-0.5">Contabilidade</span>
                 </div>
             </a>
 
-            <div class="hidden md:flex items-center space-x-12">
-                <a href="#quem-somos" class="text-xs uppercase tracking-widest font-bold text-gray-400 hover:text-brand transition-colors">Quem Somos</a>
-                <a href="#servicos" class="text-xs uppercase tracking-widest font-bold text-gray-400 hover:text-brand transition-colors">Serviços</a>
-                <a href="#metodo" class="text-xs uppercase tracking-widest font-bold text-gray-400 hover:text-brand transition-colors">Método</a>
-                <a href="https://wa.me/5547996816214" target="_blank" class="btn-neon px-6 py-2 text-xs uppercase tracking-widest clip-path-slant">
-                    Fale Conosco
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#servicos" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Serviços</a>
+                <a href="#metodo" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Como Funciona</a>
+                <a href="#faq" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Dúvidas</a>
+            </div>
+
+            <div class="hidden md:flex gap-4">
+                <a href="https://wa.me/5547996816214?text=Ol%C3%A1%2C+tenho+d%C3%BAvidas+relacionadas+a+contabilidade." target="_blank" class="text-sm font-bold text-white hover:text-brand transition-colors flex items-center gap-2">
+                    <i class="fab fa-whatsapp"></i> Falar com Especialista
+                </a>
+                <a href="https://wa.me/5547996816214?text=Ol%C3%A1%2C+sou+cliente+e+gostaria+de+atendimento." target="_blank" class="bg-white text-black px-5 py-2 rounded-lg text-sm font-bold hover:bg-brand transition-colors">
+                    Área do Cliente
                 </a>
             </div>
 
-            <button id="mobile-menu-btn" class="md:hidden text-white hover:text-brand transition-colors">
-                <i class="fas fa-bars text-2xl"></i>
+            <button id="mobile-menu-btn" class="md:hidden text-white text-2xl">
+                <i class="fas fa-bars"></i>
             </button>
         </nav>
 
-        <div id="mobile-menu" class="fixed inset-0 bg-black/95 z-40 flex flex-col justify-center items-center opacity-0 pointer-events-none transition-all duration-500 backdrop-blur-xl">
-            <a href="#quem-somos" class="mobile-link text-5xl font-anton text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-600 mb-8 hover:text-brand transition-all">QUEM SOMOS</a>
-            <a href="#servicos" class="mobile-link text-5xl font-anton text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-600 mb-8 hover:text-brand transition-all">SERVIÇOS</a>
-            <a href="#metodo" class="mobile-link text-5xl font-anton text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-600 mb-8 hover:text-brand transition-all">MÉTODO</a>
+        <div id="mobile-menu" class="fixed inset-0 bg-dark-base/95 backdrop-blur-xl z-40 hidden flex-col justify-center items-center gap-8 p-6">
+            <a href="#servicos" class="text-2xl font-bold text-white mobile-link">Serviços</a>
+            <a href="#metodo" class="text-2xl font-bold text-white mobile-link">Como Funciona</a>
+            <a href="https://wa.me/5547996816214?text=Ol%C3%A1%2C+tenho+d%C3%BAvidas+relacionadas+a+contabilidade." target="_blank" class="btn-primary w-full justify-center">Falar no WhatsApp</a>
         </div>
     </header>
 
     <main>
         <!-- HERO SECTION -->
-        <!-- FIX: Aumentei o pt-20 para pt-40 (padding-top) para descolar o texto do menu -->
-        <section class="relative min-h-screen flex items-center pt-40 overflow-hidden">
-            <div class="absolute inset-0 bg-[size:50px_50px] bg-grid-tech opacity-[0.07]"></div>
+        <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden border-b border-dark-border">
+            <div class="absolute inset-0 bg-[size:40px_40px] bg-grid-tech opacity-[0.05]"></div>
             
-            <!-- Elemento Decorativo CF Gigante no Fundo -->
-            <div class="absolute top-1/2 right-0 transform translate-x-1/3 -translate-y-1/2 opacity-5 pointer-events-none select-none hidden lg:block">
-                 <svg width="800" height="800" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="100" cy="100" r="90" stroke="#CCFF00" stroke-width="2"/>
-                    <path d="M100 20 V180" stroke="#CCFF00" stroke-width="1"/>
-                    <text x="50" y="140" font-family="Anton" font-size="120" fill="#CCFF00" opacity="0.5">C</text>
-                    <text x="105" y="140" font-family="Anton" font-size="120" fill="#CCFF00" opacity="0.5">F</text>
-                 </svg>
-            </div>
-
-            <div class="container mx-auto px-6 relative z-30 pb-32">
-                <div class="max-w-7xl mx-auto text-center md:text-left">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 border border-brand/30 rounded-full mb-8 bg-brand/5 reveal">
-                        <span class="w-2 h-2 bg-brand rounded-full animate-pulse"></span>
-                        <span class="text-xs font-bold uppercase tracking-widest text-brand">Especialistas em Nutrição</span>
-                    </div>
-
-                    <h1 class="text-6xl md:text-8xl lg:text-9xl font-anton text-white hero-text mb-8 reveal" style="transition-delay: 100ms;">
-                        DOMINE SUA <br>
-                        CONTABILIDADE. <br>
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-white">CONFRONTE A BUROCRACIA.</span>
-                    </h1>
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="flex flex-col lg:flex-row items-center gap-16">
                     
-                    <div class="flex flex-col md:flex-row items-end gap-12 reveal" style="transition-delay: 200ms;">
-                        <p class="text-gray-400 text-lg md:text-xl max-w-xl font-light leading-relaxed text-center md:text-left border-l-2 border-brand pl-6">
-                            Somos uma contabilidade estratégica, focada exclusivamente em <strong class="text-white">NUTRICIONISTAS</strong>. Simplificamos suas finanças para que você possa focar no seu crescimento.
+                    <!-- Lado Esquerdo -->
+                    <div class="lg:w-1/2 text-center lg:text-left reveal">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 rounded-full mb-6">
+                            <span class="w-2 h-2 bg-brand rounded-full animate-pulse"></span>
+                            <span class="text-xs font-bold uppercase tracking-widest text-brand">Especialistas em Nutrição</span>
+                        </div>
+
+                        <h1 class="text-5xl lg:text-7xl font-display font-bold text-white leading-tight mb-6">
+                            Contabilidade completa, <br>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-white">sem burocracia.</span>
+                        </h1>
+                        
+                        <p class="text-gray-400 text-lg mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+                            Simplifique sua rotina financeira com a Confront. Abra sua empresa grátis ou troque de contador sem dor de cabeça. Tecnologia e atendimento humano em um só lugar.
                         </p>
                         
-                        <div class="flex gap-4 w-full md:w-auto justify-center md:justify-start">
-                            <a href="#servicos" class="btn-neon px-8 py-4 text-sm font-bold tracking-widest uppercase">
-                                Nossas Soluções
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                            <a href="https://wa.me/5547996816214?text=Ol%C3%A1%2C+gostaria+de+saber+mais+para+abertura+de+empresa." target="_blank" class="btn-primary">
+                                <i class="fas fa-rocket"></i> Quero Abrir Empresa
                             </a>
-                            <a href="https://wa.me/5547996816214" class="px-8 py-4 border border-white/20 text-white text-sm font-bold tracking-widest uppercase hover:bg-white hover:text-black transition-all">
-                                WhatsApp
+                            <a href="https://wa.me/5547996816214?text=Ol%C3%A1%2C+gostaria+de+saber+mais+para+trocar+de+contabilidade." target="_blank" class="btn-outline">
+                                <i class="fas fa-sync-alt"></i> Trocar de Contador
                             </a>
                         </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Marquee ajustado -->
-            <div class="absolute bottom-0 left-0 w-full marquee-strip py-3 overflow-hidden z-20 shadow-[0_0_20px_rgba(204,255,0,0.3)]">
-                <div class="whitespace-nowrap animate-marquee">
-                    <span class="text-xl font-anton mx-4">ESTRATÉGIA • LUCRO • TECNOLOGIA • NUTRIÇÃO • PERFORMANCE • ESTRATÉGIA • LUCRO • TECNOLOGIA • NUTRIÇÃO • PERFORMANCE •</span>
-                    <span class="text-xl font-anton mx-4">ESTRATÉGIA • LUCRO • TECNOLOGIA • NUTRIÇÃO • PERFORMANCE • ESTRATÉGIA • LUCRO • TECNOLOGIA • NUTRIÇÃO • PERFORMANCE •</span>
+                        <div class="mt-8 flex items-center justify-center lg:justify-start gap-6 text-sm text-gray-500 font-medium">
+                            <span class="flex items-center gap-2"><i class="fas fa-check text-brand"></i> Abertura Grátis</span>
+                            <span class="flex items-center gap-2"><i class="fas fa-check text-brand"></i> Atendimento Humanizado</span>
+                        </div>
+                    </div>
+
+                    <!-- Lado Direito (Imagem com Card Interativo) -->
+                    <div class="lg:w-1/2 w-full reveal" style="transition-delay: 0.2s;">
+                        <div class="relative rounded-2xl overflow-hidden border border-dark-border shadow-2xl shadow-brand/10 group interactive-element">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark-base via-transparent to-transparent opacity-60 z-10 pointer-events-none"></div>
+                            <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
+                                 alt="Gestão Financeira" 
+                                 class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700 hover-color-img filter grayscale">
+                            
+                            <!-- CARD INTERATIVO QUE ABRE MODAL -->
+                            <button id="open-modal-btn" class="absolute bottom-6 left-6 right-6 bg-dark-card/90 backdrop-blur-md p-6 rounded-xl border border-white/10 z-20 text-left hover:border-brand transition-colors cursor-pointer group-btn">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-xs text-brand font-bold uppercase tracking-wider mb-1">Iniciando a Carreira?</p>
+                                        <p class="text-xl font-bold text-white mb-1">Programa Início de Carreira</p>
+                                        <p class="text-xs text-gray-400">Clique para conhecer condições especiais.</p>
+                                    </div>
+                                    <div class="h-10 w-10 bg-white group-hover:bg-brand rounded-full flex items-center justify-center text-black transition-colors">
+                                        <i class="fas fa-plus"></i>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- QUEM SOMOS -->
-        <section id="quem-somos" class="py-32 relative bg-dark-base border-t border-dark-border">
+        <!-- BARRA DE CONFIANÇA -->
+        <section class="py-10 border-b border-dark-border bg-dark-surface">
             <div class="container mx-auto px-6">
-                <div class="grid lg:grid-cols-2 gap-20 items-center">
-                    
-                    <!-- Imagem: AERIAL RUNNING TRACK -->
-                    <div class="relative group reveal cursor-crosshair">
-                        <div class="absolute -inset-1 bg-brand opacity-20 group-hover:opacity-100 blur transition-opacity duration-500"></div>
-                        <div class="relative aspect-[3/4] overflow-hidden bg-dark-card border border-dark-border">
-                            <!-- Imagem de Superação -->
-                            <img src="https://images.unsplash.com/photo-1532444458054-01a7dd3e9fca?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" 
-                                 alt="Atletas na pista de corrida" 
-                                 class="w-full h-full object-cover hover-color-img">
-                            
-                            <!-- Overlay com a Marca CF -->
-                            <div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black to-transparent flex justify-between items-end">
-                                <div>
-                                    <h3 class="text-3xl font-anton text-white">SUPERAÇÃO</h3>
-                                    <p class="text-brand font-mono text-sm">STATUS: ALTA PERFORMANCE</p>
-                                </div>
-                                <div class="text-4xl font-anton text-white/10">CF</div>
-                            </div>
-                        </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    <div class="flex flex-col items-center">
+                        <span class="text-3xl font-bold text-white font-display">+200</span>
+                        <span class="text-xs text-gray-500 uppercase tracking-wider mt-1">Nutricionistas Atendidos</span>
                     </div>
-
-                    <!-- Texto Original Integrado -->
-                    <div class="reveal space-y-8" style="transition-delay: 200ms;">
-                        <h2 class="text-5xl md:text-7xl font-anton text-white leading-none">
-                            QUEM <span class="text-brand">SOMOS</span>
-                        </h2>
-                        
-                        <div class="space-y-6 text-gray-400 font-light text-lg">
-                            <p>
-                                A CONFRONT é a inovação da contabilidade tradicional. Além de um escritório contábil, somos <strong class="text-white">parceiros estratégicos</strong> dedicados a você e seus negócios. Somos ferramenta e suporte em todas as nuances financeiras para alcançar os seus objetivos com eficiência.
-                            </p>
-                            <p class="border-l-4 border-brand pl-6 italic text-gray-300">
-                                "Nossa missão é traduzir a complexidade fiscal e financeira em linguagem clara e acionável, permitindo que você tome as melhores decisões para o seu negócio prosperar com segurança e previsibilidade."
-                            </p>
-                        </div>
-
-                        <div class="grid grid-cols-2 gap-8 pt-8 border-t border-dark-border">
-                            <div>
-                                <span class="block text-4xl font-anton text-white mb-2">100%</span>
-                                <span class="text-xs font-mono text-gray-500 uppercase">Segurança & Previsibilidade</span>
-                            </div>
-                            <div>
-                                <span class="block text-4xl font-anton text-white mb-2">24/7</span>
-                                <span class="text-xs font-mono text-gray-500 uppercase">Suporte Estratégico</span>
-                            </div>
-                        </div>
+                    <div class="flex flex-col items-center">
+                        <span class="text-3xl font-bold text-white font-display">100%</span>
+                        <span class="text-xs text-gray-500 uppercase tracking-wider mt-1">Empresas Regulares</span>
                     </div>
-
+                    <div class="flex flex-col items-center">
+                        <span class="text-3xl font-bold text-white font-display">R$ 0</span>
+                        <span class="text-xs text-gray-500 uppercase tracking-wider mt-1">Custo de Abertura<sup class="text-[0.6em] text-brand">1</sup></span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <span class="text-3xl font-bold text-white font-display">24h</span>
+                        <span class="text-xs text-gray-500 uppercase tracking-wider mt-1">Plataforma Online</span>
+                    </div>
+                </div>
+                <!-- Legenda do Asterisco -->
+                <div class="text-center mt-6">
+                    <p class="text-[10px] text-gray-600">¹ Endereço fiscal local ao escritório. Valores para outras localidades sob consulta.</p>
                 </div>
             </div>
         </section>
 
         <!-- SERVIÇOS -->
-        <section id="servicos" class="py-32 bg-dark-surface relative">
-            <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-brand/5 to-transparent pointer-events-none"></div>
-
-            <div class="container mx-auto px-6 relative z-10">
-                <div class="flex flex-col md:flex-row justify-between items-end mb-20 reveal">
-                    <div>
-                        <span class="text-brand font-mono text-xs mb-2 block">SOLUÇÕES COMPLETAS</span>
-                        <h2 class="text-5xl md:text-7xl font-anton text-white">NOSSOS SERVIÇOS</h2>
-                    </div>
-                    <p class="text-gray-500 max-w-xs text-right mt-6 md:mt-0 font-mono text-xs">
-                        // Soluções completas para a saúde <br>financeira do seu negócio.
-                    </p>
+        <section id="servicos" class="py-24 bg-dark-base relative">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Tudo o que sua nutrição precisa</h2>
+                    <p class="text-gray-400">Do PF ao PJ, cuidamos de toda a burocracia para você focar nos seus pacientes.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Contabilidade -->
-                    <div class="tech-card col-span-1 md:col-span-2 p-10 reveal group">
-                        <div class="flex justify-between items-start mb-8">
-                            <i class="fas fa-calculator text-4xl text-brand"></i>
-                            <span class="bg-brand/10 text-brand px-2 py-1 text-[10px] font-bold uppercase border border-brand/20">Fiscal & Contábil</span>
-                        </div>
-                        <h3 class="text-3xl font-anton text-white mb-4 group-hover:text-brand transition-colors">Contabilidade</h3>
-                        <p class="text-gray-400 max-w-lg">
-                            Gestão completa de suas obrigações fiscais e contábeis. Relatórios claros, 100% digital e sem papelada.
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Cards Apenas Informativos -->
+                    <div class="service-card reveal">
+                        <div class="card-icon-box"><i class="fas fa-file-signature"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-3">Abertura de Empresa</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Não cobramos honorários para abrir seu CNPJ. Cuidamos de todo o processo na Junta Comercial, Receita e Prefeitura.
                         </p>
                     </div>
 
-                    <!-- BPO -->
-                    <div class="tech-card col-span-1 p-10 reveal bg-dark-card border-l-4 border-l-white" style="transition-delay: 100ms;">
-                        <i class="fas fa-hand-holding-dollar text-3xl text-white mb-8"></i>
-                        <h3 class="text-2xl font-anton text-white mb-4">BPO Financeiro</h3>
-                        <p class="text-gray-500 text-sm">
-                            Terceirize seu financeiro. Cuidamos das contas a pagar, receber e do fluxo de caixa para você ter total controle.
+                    <div class="service-card reveal" style="transition-delay: 0.1s;">
+                        <div class="card-icon-box"><i class="fas fa-calculator"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-3">Contabilidade Completa</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Cálculo de impostos, folhas de pagamento, pró-labore e obrigações acessórias. Tudo digital e em dia.
                         </p>
                     </div>
 
-                    <!-- Planejamento -->
-                    <div class="tech-card col-span-1 bg-brand text-black p-10 reveal" style="transition-delay: 200ms;">
-                        <i class="fas fa-chart-line text-3xl mb-8"></i>
-                        <h3 class="text-2xl font-anton mb-4">Planejamento Tributário</h3>
-                        <p class="text-black/90 text-sm font-medium">
-                            Nossa maior especialidade. Intermediamos com instituições financeiras e públicas. Estratégia para garantir que você pague o mínimo de taxas legalmente, maximizando lucros.
+                    <div class="service-card reveal" style="transition-delay: 0.2s;">
+                        <div class="card-icon-box"><i class="fas fa-exchange-alt"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-3">Troca de Contador</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Está insatisfeito com seu contador atual? Fazemos a migração da sua empresa para a Confront sem custos.
                         </p>
                     </div>
 
-                    <!-- Card Extra (Layout) -->
-                    <div class="tech-card col-span-1 md:col-span-2 p-10 reveal" style="transition-delay: 300ms;">
-                        <div class="flex flex-col md:flex-row items-center justify-between gap-8">
-                            <div>
-                                <h3 class="text-2xl font-anton text-white mb-2 flex items-center gap-3">
-                                    <i class="fas fa-user-shield text-brand"></i> SEGURANÇA PROFISSIONAL
-                                </h3>
-                                <p class="text-gray-400 text-sm">Para nutricionistas que atuam via CNPJ, o registro no Conselho Regional de Nutricionistas é obrigatório. Garantimos que sua empresa esteja 100% regularizada, evitando multas e permitindo que você atue com total segurança e credibilidade no mercado.</p>
-                            </div>
-                            <a href="https://wa.me/5547996816214" class="text-brand font-bold text-sm uppercase tracking-widest hover:text-white transition-colors">
-                                REGULARIZE AGORA <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
-                        </div>
+                    <div class="service-card reveal">
+                        <div class="card-icon-box"><i class="fas fa-user-shield"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-3">Regularização CRN</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Cadastramos e regularizamos seu consultório junto ao Conselho Regional de Nutricionistas.
+                        </p>
+                    </div>
+
+                    <div class="service-card reveal" style="transition-delay: 0.1s;">
+                        <div class="card-icon-box"><i class="fas fa-chart-line"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-3">BPO Financeiro</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Terceirize seu financeiro. Controlamos contas a pagar, receber e fluxo de caixa para você.
+                        </p>
+                    </div>
+
+                    <div class="service-card reveal border-brand bg-brand/5" style="transition-delay: 0.2s;">
+                        <div class="card-icon-box bg-brand text-black"><i class="fas fa-piggy-bank"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-3">Planejamento Tributário</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Nossa especialidade. Analisamos seu faturamento para enquadrar no menor imposto legal possível.
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- MÉTODO -->
-        <section id="metodo" class="py-32 bg-dark-base relative border-t border-dark-border">
+        <!-- COMO FUNCIONA -->
+        <section id="metodo" class="py-24 bg-dark-surface border-y border-dark-border">
             <div class="container mx-auto px-6">
-                 <div class="flex flex-col md:flex-row justify-between items-end mb-20 reveal">
-                    <div>
-                        <span class="text-brand font-mono text-xs mb-2 block">PROCESSO CLARO</span>
-                        <h2 class="text-5xl md:text-7xl font-anton text-white">NOSSO MÉTODO</h2>
-                    </div>
-                    <p class="text-gray-500 max-w-xs text-right mt-6 md:mt-0 font-mono text-xs">
-                        // Transparência para o seu sucesso.
-                    </p>
+                <div class="mb-16 reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Como funciona a Confront?</h2>
+                    <p class="text-gray-400">Processo simples, transparente e 100% digital.</p>
                 </div>
 
-                <div class="grid md:grid-cols-4 gap-8">
-                    <!-- Passo 1 -->
-                    <div class="tech-card p-8 reveal group hover:bg-dark-surface">
-                        <span class="text-6xl font-anton text-dark-border group-hover:text-brand transition-colors mb-4 block">01</span>
-                        <h3 class="text-xl font-bold text-white mb-3">Diagnóstico</h3>
-                        <p class="text-gray-500 text-sm">Analisamos sua situação atual, seja você PF, PJ ou em transição, para entender suas metas e desafios.</p>
+                <div class="grid md:grid-cols-4 gap-8 relative">
+                    <div class="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-dark-border -z-0"></div>
+
+                    <div class="relative z-10 reveal group">
+                        <div class="w-24 h-24 bg-dark-card border border-dark-border rounded-full flex items-center justify-center mb-6 mx-auto group-hover:border-brand group-hover:text-brand transition-colors text-2xl font-bold text-white shadow-lg">1</div>
+                        <h3 class="text-lg font-bold text-white text-center mb-2">Diagnóstico</h3>
+                        <p class="text-sm text-gray-500 text-center">Entendemos seu momento atual e definimos a melhor estratégia (PF ou PJ).</p>
                     </div>
-                    <!-- Passo 2 -->
-                    <div class="tech-card p-8 reveal group hover:bg-dark-surface" style="transition-delay: 100ms;">
-                        <span class="text-6xl font-anton text-dark-border group-hover:text-brand transition-colors mb-4 block">02</span>
-                        <h3 class="text-xl font-bold text-white mb-3">Estratégia</h3>
-                        <p class="text-gray-500 text-sm">Desenvolvemos um plano de ação personalizado, definindo o melhor regime tributário e a estrutura financeira ideal.</p>
+
+                    <div class="relative z-10 reveal group" style="transition-delay: 0.1s;">
+                        <div class="w-24 h-24 bg-dark-card border border-dark-border rounded-full flex items-center justify-center mb-6 mx-auto group-hover:border-brand group-hover:text-brand transition-colors text-2xl font-bold text-white shadow-lg">2</div>
+                        <h3 class="text-lg font-bold text-white text-center mb-2">Contratação</h3>
+                        <p class="text-sm text-gray-500 text-center">Assinatura digital do contrato e envio de documentos pela plataforma.</p>
                     </div>
-                    <!-- Passo 3 -->
-                    <div class="tech-card p-8 reveal group hover:bg-dark-surface" style="transition-delay: 200ms;">
-                        <span class="text-6xl font-anton text-dark-border group-hover:text-brand transition-colors mb-4 block">03</span>
-                        <h3 class="text-xl font-bold text-white mb-3">Execução</h3>
-                        <p class="text-gray-500 text-sm">Implementamos a estratégia, cuidando de toda a burocracia de abertura ou migração de empresa e rotinas mensais.</p>
+
+                    <div class="relative z-10 reveal group" style="transition-delay: 0.2s;">
+                        <div class="w-24 h-24 bg-dark-card border border-dark-border rounded-full flex items-center justify-center mb-6 mx-auto group-hover:border-brand group-hover:text-brand transition-colors text-2xl font-bold text-white shadow-lg">3</div>
+                        <h3 class="text-lg font-bold text-white text-center mb-2">Execução</h3>
+                        <p class="text-sm text-gray-500 text-center">Nós cuidamos da burocracia, abertura de CNPJ e regularizações.</p>
                     </div>
-                    <!-- Passo 4 -->
-                    <div class="tech-card p-8 reveal group hover:bg-dark-surface" style="transition-delay: 300ms;">
-                        <span class="text-6xl font-anton text-dark-border group-hover:text-brand transition-colors mb-4 block">04</span>
-                        <h3 class="text-xl font-bold text-white mb-3">Acompanhamento</h3>
-                        <p class="text-gray-500 text-sm">Monitoramos seus resultados com relatórios mensais e reuniões periódicas para ajustar a rota e garantir seu crescimento.</p>
+
+                    <div class="relative z-10 reveal group" style="transition-delay: 0.3s;">
+                        <div class="w-24 h-24 bg-dark-card border border-dark-border rounded-full flex items-center justify-center mb-6 mx-auto group-hover:border-brand group-hover:text-brand transition-colors text-2xl font-bold text-white shadow-lg">4</div>
+                        <h3 class="text-lg font-bold text-white text-center mb-2">Rotina</h3>
+                        <p class="text-sm text-gray-500 text-center">Sua empresa roda tranquila. Impostos e obrigações em dia, todo mês.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- IMAGEM DESTAQUE (Pista de Atletismo - Superação) -->
+        <section class="py-20 relative overflow-hidden">
+            <div class="container mx-auto px-6">
+                <div class="relative rounded-2xl overflow-hidden aspect-video md:aspect-[21/9] border border-dark-border group interactive-element">
+                    <div class="absolute inset-0 border-2 border-brand opacity-0 neon-border transition-opacity duration-700 z-20 pointer-events-none"></div>
+                    <!-- Imagem de Pista de Atletismo / Largada -->
+                    <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80" 
+                         alt="Pista de Atletismo - Superação" 
+                         class="w-full h-full object-cover filter grayscale contrast-125 transition-all duration-1000 hover-color-img">
+                    <div class="absolute bottom-0 left-0 w-full p-8 md:p-12 bg-gradient-to-t from-black via-black/80 to-transparent z-10">
+                        <h3 class="text-3xl md:text-5xl font-impact text-white mb-2">SAIA NA FRENTE</h3>
+                        <p class="text-brand font-mono text-sm md:text-base tracking-widest">PERFORMANCE FINANCEIRA PARA QUEM QUER CHEGAR LONGE</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="py-24 bg-dark-base">
+            <div class="container mx-auto px-6 max-w-3xl">
+                <h2 class="text-3xl font-bold text-white text-center mb-12">Perguntas Frequentes</h2>
+                <div class="space-y-4">
+                    <div class="faq-item">
+                        <button class="faq-button text-white"><span>A Confront atende apenas Nutricionistas?</span><i class="fas fa-chevron-down faq-icon"></i></button>
+                        <div class="faq-content"><p class="pb-4 text-sm">Sim, somos especialistas. Focamos 100% em nutricionistas para garantir que entendemos profundamente a legislação, os benefícios fiscais e a rotina do seu consultório.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-button text-white"><span>Preciso de contador para abrir empresa?</span><i class="fas fa-chevron-down faq-icon"></i></button>
+                        <div class="faq-content"><p class="pb-4 text-sm">Sim. A única exceção é o MEI. Para abrir uma Microempresa (ME) ou EPP, a lei exige um contador responsável técnico. Nós cuidamos disso para você.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-button text-white"><span>Como funciona o atendimento?</span><i class="fas fa-chevron-down faq-icon"></i></button>
+                        <div class="faq-content"><p class="pb-4 text-sm">Nosso atendimento é humanizado e multicanal. Você pode falar conosco via WhatsApp, E-mail ou Telefone. Nada de robôs te enrolando.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-button text-white"><span>Já tenho contador, como troco para a Confront?</span><i class="fas fa-chevron-down faq-icon"></i></button>
+                        <div class="faq-content"><p class="pb-4 text-sm">É muito simples. Nós fazemos a portabilidade técnica. Você só precisa nos fornecer o contato do seu contador atual e nós cuidamos da transferência dos documentos e responsabilidade.</p></div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- CTA FINAL -->
-        <section class="py-32 bg-brand flex items-center justify-center relative overflow-hidden">
-            <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\' opacity=\'1\'/%3E%3C/svg%3E');"></div>
-            
+        <section class="py-24 bg-brand relative overflow-hidden">
+            <div class="absolute inset-0 bg-grid-tech opacity-10"></div>
             <div class="container mx-auto px-6 text-center relative z-10">
-                <h2 class="text-5xl md:text-8xl font-anton text-black mb-6 reveal">
-                    ESTÁ PRONTO PARA <br>TRANSFORMAR?
-                </h2>
-                <p class="text-black/80 text-xl font-bold max-w-2xl mx-auto mb-10 reveal">
-                    Clique no botão abaixo para falar diretamente conosco.
+                <h2 class="text-4xl md:text-6xl font-impact text-black mb-6">PRONTO PARA TRANSFORMAR SUA GESTÃO?</h2>
+                <p class="text-black/80 text-xl font-medium max-w-2xl mx-auto mb-10">
+                    Confront e você juntos.
                 </p>
-                <a href="https://wa.me/5547996816214?text=Ol%C3%A1%21+Vim+pelo+site+e+gostaria+de+saber+mais+sobre+a+CONFRONT." 
-                   target="_blank"
-                   class="inline-block bg-black text-white px-12 py-6 text-xl font-anton tracking-wider hover:scale-105 hover:bg-white hover:text-black transition-all shadow-2xl">
-                    FALAR NO WHATSAPP <i class="fab fa-whatsapp ml-2 text-brand"></i>
+                <a href="https://wa.me/5547996816214?text=Ol%C3%A1%2C+tenho+d%C3%BAvidas+relacionadas+a+contabilidade." target="_blank" class="inline-block bg-black text-white px-10 py-5 rounded-lg text-lg font-bold hover:scale-105 transition-transform shadow-2xl">
+                    FALAR NO WHATSAPP AGORA
                 </a>
             </div>
         </section>
@@ -524,77 +577,152 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-black py-16 border-t border-gray-900">
-        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
-            
-            <!-- Coluna 1: Branding -->
-            <div class="text-center md:text-left flex flex-col items-center md:items-start">
-                <div class="flex items-center gap-3 mb-4">
-                     <!-- Logo Pequena -->
-                    <div class="cf-icon w-8 h-8 text-sm">
-                        <div class="cf-icon-inner">
-                            <span class="cf-c font-anton">C</span>
-                            <span class="cf-f font-anton">F</span>
-                        </div>
+    <footer class="bg-black py-16 border-t border-dark-border text-sm">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="cf-icon w-8 h-8 text-sm"><div class="cf-icon-inner"><span class="cf-c font-anton">C</span><span class="cf-f font-anton">F</span></div></div>
+                        <span class="text-xl font-impact text-white tracking-wide">CONFRONT</span>
                     </div>
-                    <!-- Texto Logo -->
-                    <div class="flex items-center leading-none">
-                        <span class="text-xl font-anton text-white tracking-wide">CON</span>
-                        <span class="text-xl font-anton bg-brand text-black px-1 ml-0.5 tracking-wide transform -skew-x-12">FRONT</span>
+                    <p class="text-gray-500 max-w-sm mb-6">Escritório de contabilidade digital especializado em Nutricionistas. Unimos tecnologia e inteligência tributária para o seu crescimento.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded bg-dark-surface flex items-center justify-center text-gray-400 hover:bg-brand hover:text-black transition-colors"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded bg-dark-surface flex items-center justify-center text-gray-400 hover:bg-brand hover:text-black transition-colors"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
-                <p class="text-gray-400 font-bold text-sm">Confront Contabilidade e Finanças.</p>
-                <p class="text-gray-600 text-xs mt-2">© 2025. Todos os direitos reservados.</p>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Empresa</h4>
+                    <ul class="space-y-3 text-gray-500">
+                        <li><a href="#servicos" class="hover:text-brand transition-colors">Nossos Serviços</a></li>
+                        <li><a href="#metodo" class="hover:text-brand transition-colors">Como Funciona</a></li>
+                        <li><a href="#faq" class="hover:text-brand transition-colors">Dúvidas Frequentes</a></li>
+                        <li><a href="https://wa.me/5547996816214?text=Ol%C3%A1%2C+sou+cliente+e+gostaria+de+atendimento." target="_blank" class="hover:text-brand transition-colors">Área do Cliente</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Contato</h4>
+                    <ul class="space-y-3 text-gray-500">
+                        <li class="flex items-center gap-3"><i class="fab fa-whatsapp text-brand"></i><a href="https://wa.me/5547996816214?text=Ol%C3%A1%2C+tenho+d%C3%BAvidas+relacionadas+a+contabilidade." target="_blank" class="hover:text-white transition-colors">(47) 99681-6214</a></li>
+                        <li class="flex items-center gap-3"><i class="fas fa-envelope text-brand"></i><a href="mailto:confrontcontabilidade@gmail.com" class="hover:text-white transition-colors">Email Oficial</a></li>
+                    </ul>
+                </div>
             </div>
-            
-            <!-- Coluna 2: Contato e Legal -->
-            <div class="flex flex-col items-center md:items-end gap-4 text-center md:text-right">
-                
-                <!-- Links de Contato -->
-                <div class="flex flex-col md:flex-row gap-4 md:gap-8 items-center text-sm font-medium">
-                    <a href="https://wa.me/5547996816214" class="text-white hover:text-brand transition-colors flex items-center gap-2">
-                        <i class="fab fa-whatsapp text-brand text-lg"></i> (47) 99681-6214
-                    </a>
-                    <span class="hidden md:inline text-gray-700">|</span>
-                    <a href="mailto:confrontcontabilidade@gmail.com" class="text-white hover:text-brand transition-colors flex items-center gap-2">
-                        <i class="fas fa-envelope text-brand text-lg"></i> Email
-                    </a>
+            <div class="pt-8 border-t border-dark-border flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-600">
+                <div>
+                    <p class="font-bold text-gray-500 mb-1">Confront Contabilidade LTDA</p>
+                    <p>CNPJ: 62.575.073/0001-69 | CRC: 079260/O</p>
                 </div>
-
-                <!-- Dados Legais -->
-                <div class="text-gray-500 text-xs font-mono space-y-1">
-                    <p class="uppercase tracking-wide">Confront Contabilidade LTDA</p>
-                    <p>CNPJ: 62.575.073/0001-69</p>
-                    <p>CRC: 079260/O</p>
-                </div>
+                <p>&copy; 2025 Confront. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
+    <!-- MODAL DE INCENTIVO (Escondido) -->
+    <div id="modal-incentivo" class="modal fixed inset-0 z-[60] flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/90 backdrop-blur-sm" id="modal-backdrop"></div>
+        <div class="modal-content relative bg-dark-card border border-brand/20 w-full max-w-lg rounded-2xl p-8 shadow-2xl shadow-brand/10">
+            <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fas fa-times text-xl"></i></button>
+            
+            <div class="text-center">
+                <div class="w-16 h-16 bg-brand/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-rocket text-3xl text-brand"></i>
+                </div>
+                <h3 class="text-3xl font-display font-bold text-white mb-2">Parceiro de Crescimento</h3>
+                <p class="text-brand font-medium text-sm uppercase tracking-widest mb-6">PROGRAMA PARA INÍCIO DE CARREIRA</p>
+                
+                <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                    Seja você recém-formado, autônomo em transição ou iniciando do zero, criamos uma condição exclusiva onde cobramos <strong class="text-white">apenas o custo operacional</strong> nos primeiros meses*.
+                    <br><br>
+                    Queremos ser sócios do seu sucesso, não mais um boleto.
+                </p>
+                
+                <p class="text-[10px] text-gray-600 mb-6">*Válido por 6 meses ou até atingir faturamento de R$ 4.000,00.</p>
+
+                <a href="https://wa.me/5547996816214?text=Ol%C3%A1%2C+gostaria+de+saber+mais+sobre+o+Programa+de+In%C3%ADcio+de+Carreira." target="_blank" class="btn-primary w-full justify-center">
+                    Falar com Especialista sobre o Programa
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const cards = document.querySelectorAll('.tech-card');
+            
+            // --- MODAL LÓGICA ---
+            const modal = document.getElementById('modal-incentivo');
+            const openBtn = document.getElementById('open-modal-btn');
+            const closeBtn = document.getElementById('close-modal-btn');
+            const backdrop = document.getElementById('modal-backdrop');
+
+            function openModal() {
+                modal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                modal.classList.remove('open');
+                document.body.style.overflow = 'auto';
+            }
+
+            if(openBtn) openBtn.addEventListener('click', openModal);
+            if(closeBtn) closeBtn.addEventListener('click', closeModal);
+            if(backdrop) backdrop.addEventListener('click', closeModal);
+
+            // --- EFEITO IMAGEM (Scroll + Delay) ---
+            const interactiveElements = document.querySelectorAll('.interactive-element');
+            
+            // Mouse Parallax na Imagem
             document.addEventListener('mousemove', e => {
-                cards.forEach(card => {
-                    const rect = card.getBoundingClientRect();
+                interactiveElements.forEach(el => {
+                    const rect = el.getBoundingClientRect();
                     const x = e.clientX - rect.left;
                     const y = e.clientY - rect.top;
-                    card.style.setProperty('--mouse-x', `${x}px`);
-                    card.style.setProperty('--mouse-y', `${y}px`);
+                    // Pequeno movimento apenas na imagem de destaque
+                    if(el.querySelector('img')) {
+                       el.querySelector('img').style.transformOrigin = `${x}px ${y}px`;
+                    }
                 });
             });
 
-            const observer = new IntersectionObserver((entries) => {
+            const scrollObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('scroll-active');
+                    } else {
+                        entry.target.classList.remove('scroll-active');
+                    }
+                });
+            }, { 
+                rootMargin: "-20% 0px -20% 0px", 
+                threshold: 0.4
+            });
+
+            interactiveElements.forEach(el => scrollObserver.observe(el));
+
+            // --- REVEAL (Entrada Suave) ---
+            const revealObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('active');
-                        observer.unobserve(entry.target);
+                        revealObserver.unobserve(entry.target);
                     }
                 });
             }, { threshold: 0.1 });
 
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
+            // --- FAQ ACCORDION ---
+            const faqButtons = document.querySelectorAll('.faq-button');
+            faqButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const item = btn.parentElement;
+                    item.classList.toggle('active');
+                });
+            });
+
+            // --- MENU MOBILE ---
             const btn = document.getElementById('mobile-menu-btn');
             const menu = document.getElementById('mobile-menu');
             const links = document.querySelectorAll('.mobile-link');
@@ -603,12 +731,14 @@
             const toggle = () => {
                 isOpen = !isOpen;
                 if(isOpen) {
-                    menu.classList.remove('opacity-0', 'pointer-events-none');
-                    btn.innerHTML = '<i class="fas fa-times text-2xl"></i>';
+                    menu.classList.remove('hidden');
+                    menu.classList.add('flex');
+                    btn.innerHTML = '<i class="fas fa-times"></i>';
                     document.body.style.overflow = 'hidden';
                 } else {
-                    menu.classList.add('opacity-0', 'pointer-events-none');
-                    btn.innerHTML = '<i class="fas fa-bars text-2xl"></i>';
+                    menu.classList.add('hidden');
+                    menu.classList.remove('flex');
+                    btn.innerHTML = '<i class="fas fa-bars"></i>';
                     document.body.style.overflow = 'auto';
                 }
             };
