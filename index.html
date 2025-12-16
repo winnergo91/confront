@@ -12,25 +12,25 @@
     <meta name="keywords" content="contabilidade para nutricionistas, contador nutricionista, abrir empresa nutrição, contabilidade online, BPO financeiro nutrição">
     <meta name="robots" content="index, follow">
     
-    <!-- Tag Canônica (Troque 'seu-dominio.com.br' pelo seu domínio real quando comprar) -->
+    <!-- Tag Canônica -->
     <link rel="canonical" href="https://www.confront.com.br/">
 
-    <!-- OPEN GRAPH (Para ficar bonito no WhatsApp/Facebook/LinkedIn) -->
+    <!-- OPEN GRAPH -->
     <meta property="og:locale" content="pt_BR">
     <meta property="og:type" content="website">
     <meta property="og:title" content="CONFRONT | Contabilidade para Nutricionistas">
     <meta property="og:description" content="Especialistas em contabilidade para nutrição. Economize impostos e regularize seu consultório.">
     <meta property="og:url" content="https://www.confront.com.br/">
     <meta property="og:site_name" content="CONFRONT Contabilidade">
-    <meta property="og:image" content="https://www.confront.com.br/assets/destaque-performance.jpg"> <!-- Link da imagem para redes sociais -->
+    <meta property="og:image" content="https://www.confront.com.br/assets/destaque-performance.jpg">
 
-    <!-- DADOS ESTRUTURADOS (JSON-LD) - O SEGREDO PARA O GOOGLE -->
+    <!-- DADOS ESTRUTURADOS (JSON-LD) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "AccountingService",
       "name": "CONFRONT Contabilidade",
-      "image": "https://www.confront.com.br/assets/logo.png",
+      "image": "https://www.confront.com.br/assets/logo.svg",
       "@id": "https://www.confront.com.br",
       "url": "https://www.confront.com.br",
       "telephone": "+5547996816214",
@@ -42,13 +42,7 @@
       "description": "Contabilidade estratégica e tecnológica focada exclusivamente em nutricionistas.",
       "openingHoursSpecification": {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday"
-        ],
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
         "opens": "08:00",
         "closes": "18:00"
       }
@@ -57,42 +51,15 @@
 
     <!-- 
         =======================================================================
-        INSTRUÇÕES PARA O DESIGNER / DESENVOLVEDOR - TROCA DE ASSETS
-        =======================================================================
-        
-        ESTRUTURA DE PASTAS SUGERIDA:
-        Crie uma pasta chamada 'assets' na mesma pasta deste arquivo index.html.
-        Dentro dela, coloque suas imagens novas.
-
-        NOMES DE ARQUIVOS SUGERIDOS:
-        1. Logo Completa (Topo): assets/logo-header.png (Use fundo transparente)
-        2. Logo Completa (Rodapé): assets/logo-footer.png (Versão branca/negativa)
-        3. Favicon (Ícone da aba): assets/favicon.png
-        4. Imagem Hero (Mulher/Topo): assets/hero-image.jpg
-        5. Imagem Destaque (Pista): assets/destaque-performance.jpg
-        6. Imagem Profissional (Quem Somos): assets/foto-profissional.jpg
-
-        COMO TROCAR A LOGO NO CÓDIGO:
-        Vá até as seções marcadas com "ÁREA DA LOGO" (Header e Footer).
-        Lá você encontrará o código atual (CSS) e o código comentado para imagem.
-        Basta apagar o bloco CSS e descomentar a tag <img>.
-
-        =======================================================================
-        MANUAL DE TROCA DE IMAGENS (ASSETS)
+        MANUAL DE TROCA DE IMAGENS E ASSETS
         =======================================================================
         1. Crie uma pasta chamada 'assets' na mesma pasta deste arquivo.
-        2. Salve o código SVG acima como 'assets/logo.svg'.
-        3. Se tiver imagens reais (fotos), salve-as na pasta assets e atualize os nomes no código abaixo:
-           - Foto Hero (Mulher/Topo): assets/hero-image.jpg (Linha ~350)
-           - Foto Destaque (Pista): assets/destaque-performance.jpg (Linha ~550)
-           - Foto Profissional (Quem Somos): assets/foto-profissional.jpg (Linha ~210)
-        =======================================================================
-
+        2. Salve seu arquivo de logo como 'logo.svg' dentro dessa pasta.
+        3. Salve seu ícone de aba como 'favicon.svg' dentro dessa pasta.
         =======================================================================
     -->
 
-    <!-- <link rel="icon" type="image/png" href="assets/logo.png"> -->
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.png">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -163,11 +130,7 @@
             font-family: 'Space Grotesk', sans-serif;
         }
         
-        .font-impact {
-            font-family: 'Anton', sans-serif;
-        }
-
-        /* Noise */
+        /* Noise Overlay */
         .noise-overlay {
             position: fixed;
             top: 0;
@@ -271,38 +234,9 @@
         .faq-icon { transition: transform 0.3s; }
         .faq-item.active .faq-icon { transform: rotate(180deg); color: #CCFF00; }
 
-        /* --- LOGO --- */
-        .cf-icon {
-            font-family: 'Anton', sans-serif;
-            position: relative;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #000;
-            border-radius: 50%;
-            border: 2px solid #CCFF00;
-            color: #CCFF00;
-            font-size: 18px;
-            line-height: 1;
-            overflow: hidden;
-        }
-        .cf-icon::before {
-            content: '';
-            position: absolute;
-            width: 50%;
-            height: 100%;
-            background: #CCFF00;
-            right: 0;
-            top: 0;
-            z-index: 1;
-        }
-        .cf-icon-inner { position: relative; z-index: 10; display: flex; }
-        .cf-c { color: #CCFF00; margin-right: -1px; }
-        .cf-f { color: #000; margin-left: -1px;}
+        /* [CSS DA LOGO ANTIGA REMOVIDO DAQUI] */
 
-        /* --- IMAGEM DESTAQUE --- */
+        /* --- ANIMAÇÕES E EFEITOS --- */
         .hover-color-img {
             filter: grayscale(100%) contrast(1.2);
             transition: filter 0.8s ease, transform 0.8s ease; 
@@ -371,24 +305,15 @@
             
             <!-- [ÁREA DA LOGO - HEADER] -->
             <a href="#" class="group flex items-center gap-3">
-                <!-- INICIO LOGO EM CODIGO -->
-                <div class="cf-icon">
-                    <div class="cf-icon-inner">
-                        <span class="cf-c">C</span>
-                        <span class="cf-f">F</span>
-                    </div>
-                </div>
-                <div class="flex flex-col">
-                    <div class="flex items-center leading-none">
-                        <span class="text-xl font-impact text-white tracking-wide">CON</span>
-                        <span class="text-xl font-impact bg-brand text-black px-1 ml-0.5 tracking-wide transform -skew-x-12">FRONT</span>
-                    </div>
-                    <span class="text-[9px] uppercase tracking-[0.3em] text-brand font-medium mt-0.5">Contabilidade</span>
-                </div>
-                <!-- FIM LOGO EM CODIGO -->
+                <!-- 
+                   AGORA ESTÁ USANDO A TAG <IMG>.
+                   Coloque seu arquivo 'logo.svg' na pasta assets.
+                   Se quiser aumentar ou diminuir, mude o 'h-10' (altura) abaixo.
+                -->
+                <img src="assets/logo.svg" alt="Confront Contabilidade" class="h-14 w-auto">
             </a>
 
-            <!-- Menu Desktop REORDENADO -->
+            <!-- Menu Desktop -->
             <div class="hidden md:flex items-center gap-8">
                 <a href="#quem-somos" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Quem Somos</a>
                 <a href="#servicos" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Serviços</a>
@@ -400,9 +325,6 @@
                 <a href="https://wa.me/5547996816214?text=Ol%C3%A1%2C+tenho+d%C3%BAvidas+relacionadas+a+contabilidade." target="_blank" class="text-sm font-bold text-white hover:text-brand transition-colors flex items-center gap-2">
                     <i class="fab fa-whatsapp"></i> Falar com a Confront
                 </a>
-                <!-- <a href="https://wa.me/5547996816214?text=Ol%C3%A1%2C+sou+cliente+e+gostaria+de+atendimento." target="_blank" class="bg-white text-black px-5 py-2 rounded-lg text-sm font-bold hover:bg-brand transition-colors"> -->
-                <!--    Área do Cliente   -->
-                </a>
             </div>
 
             <button id="mobile-menu-btn" class="md:hidden text-white text-2xl">
@@ -410,7 +332,7 @@
             </button>
         </nav>
 
-        <div id="mobile-menu" class="fixed inset-0 bg-dark-base/95 backdrop-blur-xl z-40 hidden flex-col justify-start pt-32 items-center gap-8 p-6 h-screen overflow-y-auto">
+        <div id="mobile-menu" class="fixed inset-0 bg-dark-base/95 backdrop-blur-xl z-40 hidden flex-col justify-center items-center gap-8 p-6">
             <a href="#quem-somos" class="text-2xl font-bold text-white mobile-link">Quem Somos</a>
             <a href="#servicos" class="text-2xl font-bold text-white mobile-link">Serviços</a>
             <a href="#metodo" class="text-2xl font-bold text-white mobile-link">Como Funciona</a>
@@ -458,13 +380,14 @@
                         </div>
                     </div>
 
-                    <!-- Lado Direito (Imagem com Card Interativo) -->
+                    <!-- Lado Direito -->
                     <div class="lg:w-1/2 w-full reveal" style="transition-delay: 0.2s;">
                         <div class="relative rounded-2xl overflow-hidden border border-dark-border shadow-2xl shadow-brand/10 group interactive-element">
                             <div class="absolute inset-0 bg-gradient-to-t from-dark-base via-transparent to-transparent opacity-60 z-10 pointer-events-none"></div>
                             
-                            <!-- [TROCAR IMAGEM HERO AQUI] -->
+                            <!-- <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" -->
                             <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
+
                                  alt="Gestão Financeira" 
                                  class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700 hover-color-img filter grayscale">
                             
@@ -508,14 +431,13 @@
                         <span class="text-xs text-gray-500 uppercase tracking-wider mt-1">Plataforma Online</span>
                     </div>
                 </div>
-                <!-- Legenda do Asterisco -->
                 <div class="text-center mt-6">
                     <p class="text-[10px] text-gray-600">¹ Endereço fiscal local ao escritório. Valores para outras localidades sob consulta.</p>
                 </div>
             </div>
         </section>
 
-        <!-- ORDEM: QUEM SOMOS (Agora aqui em cima) -->
+        <!-- QUEM SOMOS -->
         <section id="quem-somos" class="py-16 relative bg-dark-base border-t border-dark-border">
             <div class="container mx-auto px-6">
                 <div class="grid lg:grid-cols-2 gap-20 items-center">
@@ -524,10 +446,10 @@
                         <div class="absolute -inset-1 bg-brand neon-border opacity-20 blur transition-opacity duration-500"></div>
                         <div class="relative aspect-[3/4] overflow-hidden bg-dark-card border border-dark-border">
                             
-                            <!-- [TROCAR FOTO PROFISSIONAL AQUI] -->
                             <img src="assets/foto-profissional.jpg" 
                                  alt="Lucas Barauna" 
-                                 class="w-full h-full object-cover hover-color-img">
+                                 class="w-full h-full object-cover hover-color-img"
+                                 
                             
                             <div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black to-transparent flex justify-between items-end">
                                 <div>
@@ -573,7 +495,7 @@
             </div>
         </section>
 
-        <!-- ORDEM: SERVIÇOS -->
+        <!-- SERVIÇOS -->
         <section id="servicos" class="py-24 bg-dark-surface relative border-y border-dark-border">
             <div class="container mx-auto px-6">
                 <div class="text-center max-w-3xl mx-auto mb-16 reveal">
@@ -582,7 +504,6 @@
                 </div>
 
                 <div class="grid md:grid-cols-3 gap-6">
-                    <!-- Cards Apenas Informativos -->
                     <div class="service-card reveal">
                         <div class="card-icon-box"><i class="fas fa-file-signature"></i></div>
                         <h3 class="text-xl font-bold text-white mb-3">Abertura de Empresa</h3>
@@ -655,7 +576,7 @@
             </div>
         </section>
 
-        <!-- ORDEM: COMO FUNCIONA -->
+        <!-- COMO FUNCIONA -->
         <section id="metodo" class="py-24 bg-dark-surface border-y border-dark-border">
             <div class="container mx-auto px-6">
                 <div class="mb-16 reveal">
@@ -693,28 +614,26 @@
             </div>
         </section>
 
-        <!-- ORDEM: SAIA NA FRENTE (Imagem Performance) -->
+        <!-- SAIA NA FRENTE "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"-->
         <section class="py-20 relative overflow-hidden">
             <div class="container mx-auto px-6">
                 <div class="relative rounded-2xl overflow-hidden aspect-video md:aspect-[21/9] border border-dark-border group interactive-element">
                     <div class="absolute inset-0 border-2 border-brand opacity-0 neon-border transition-opacity duration-700 z-20 pointer-events-none"></div>
                     
-                    <!-- [TROCAR IMAGEM DESTAQUE AQUI] -->
-
-                    <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80" 
                     
+                    <img src= "assets/foto-surf.jpg"
                          alt="Pista de Atletismo - Superação" 
                          class="w-full h-full object-cover filter grayscale contrast-125 transition-all duration-1000 hover-color-img">
                     
                     <div class="absolute bottom-0 left-0 w-full p-8 md:p-12 bg-gradient-to-t from-black via-black/80 to-transparent z-10">
-                        <h3 class="text-3xl md:text-5xl font-impact text-white mb-2">SAIA NA FRENTE</h3>
+                        <h3 class="text-3xl md:text-5xl font-anton text-white mb-2">SAIA NA FRENTE</h3>
                         <p class="text-brand font-mono text-sm md:text-base tracking-widest">PERFORMANCE FINANCEIRA PARA QUEM QUER CHEGAR LONGE</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ORDEM: DÚVIDAS (FAQ) -->
+        <!-- DÚVIDAS (FAQ) -->
         <section id="faq" class="py-24 bg-dark-base">
             <div class="container mx-auto px-6 max-w-3xl">
                 <h2 class="text-3xl font-bold text-white text-center mb-12">Perguntas Frequentes</h2>
@@ -743,7 +662,7 @@
         <section class="py-24 bg-brand relative overflow-hidden">
             <div class="absolute inset-0 bg-grid-tech opacity-10"></div>
             <div class="container mx-auto px-6 text-center relative z-10">
-                <h2 class="text-4xl md:text-6xl font-impact text-black mb-6">PRONTO PARA TRANSFORMAR SUA GESTÃO?</h2>
+                <h2 class="text-4xl md:text-6xl font-anton text-black mb-6">PRONTO PARA TRANSFORMAR SUA GESTÃO?</h2>
                 <p class="text-black/80 text-xl font-medium max-w-2xl mx-auto mb-10">
                     Confront, você e seu negócio juntos.
                 </p>
@@ -762,11 +681,10 @@
                 <div class="md:col-span-2">
                     
                     <!-- [ÁREA DA LOGO - FOOTER] -->
-                    <div class="flex items-center gap-2 mb-4">
-                        <div class="cf-icon w-8 h-8 text-sm"><div class="cf-icon-inner"><span class="cf-c font-anton">C</span><span class="cf-f font-anton">F</span></div></div>
-                        <span class="text-xl font-impact text-white tracking-wide">CONFRONT</span>
+                    <div class="mb-4">
+                        <!-- Logo no rodapé usando imagem -->
+                        <img src="assets/logo.svg" alt="Confront Contabilidade" class="h-10 w-auto">
                     </div>
-                    <!-- [FIM ÁREA DA LOGO] -->
 
                     <p class="text-gray-500 max-w-sm mb-6">Escritório de contabilidade digital especializado em Nutricionistas. Unimos tecnologia e inteligência tributária para o seu crescimento.</p>
                     <div class="flex gap-4">
@@ -801,7 +719,7 @@
         </div>
     </footer>
 
-    <!-- MODAL DE INCENTIVO (Escondido) -->
+    <!-- MODAL DE INCENTIVO -->
     <div id="modal-incentivo" class="modal fixed inset-0 z-[60] flex items-center justify-center p-4">
         <div class="absolute inset-0 bg-black/90 backdrop-blur-sm" id="modal-backdrop"></div>
         <div class="modal-content relative bg-dark-card border border-brand/20 w-full max-w-lg rounded-2xl p-8 shadow-2xl shadow-brand/10">
@@ -839,48 +757,40 @@
             const closeBtn = document.getElementById('close-modal-btn');
             const backdrop = document.getElementById('modal-backdrop');
 
-            function openModal() {
-                modal.classList.add('open');
-                document.body.style.overflow = 'hidden';
+            function toggleModal(show) {
+                if (show) {
+                    modal.classList.add('open');
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    modal.classList.remove('open');
+                    document.body.style.overflow = 'auto';
+                }
             }
 
-            function closeModal() {
-                modal.classList.remove('open');
-                document.body.style.overflow = 'auto';
-            }
+            if(openBtn) openBtn.addEventListener('click', () => toggleModal(true));
+            if(closeBtn) closeBtn.addEventListener('click', () => toggleModal(false));
+            if(backdrop) backdrop.addEventListener('click', () => toggleModal(false));
 
-            if(openBtn) openBtn.addEventListener('click', openModal);
-            if(closeBtn) closeBtn.addEventListener('click', closeModal);
-            if(backdrop) backdrop.addEventListener('click', closeModal);
-
-            // --- EFEITO IMAGEM (Scroll + Delay) ---
+            // --- EFEITO IMAGEM ---
             const interactiveElements = document.querySelectorAll('.interactive-element');
             
-            // Mouse Parallax na Imagem
             document.addEventListener('mousemove', e => {
                 interactiveElements.forEach(el => {
-                    const rect = el.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    // Pequeno movimento apenas na imagem de destaque
-                    if(el.querySelector('img')) {
-                       el.querySelector('img').style.transformOrigin = `${x}px ${y}px`;
+                    const img = el.querySelector('img');
+                    if(img) {
+                        const rect = el.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        img.style.transformOrigin = `${x}px ${y}px`;
                     }
                 });
             });
 
             const scrollObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('scroll-active');
-                    } else {
-                        entry.target.classList.remove('scroll-active');
-                    }
+                    entry.target.classList.toggle('scroll-active', entry.isIntersecting);
                 });
-            }, { 
-                rootMargin: "-20% 0px -20% 0px", 
-                threshold: 0.4
-            });
+            }, { rootMargin: "-20% 0px -20% 0px", threshold: 0.4 });
 
             interactiveElements.forEach(el => scrollObserver.observe(el));
 
@@ -897,41 +807,28 @@
             document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
             // --- FAQ ACCORDION ---
-            const faqButtons = document.querySelectorAll('.faq-button');
-            faqButtons.forEach(btn => {
+            document.querySelectorAll('.faq-button').forEach(btn => {
                 btn.addEventListener('click', () => {
-                    const item = btn.parentElement;
-                    item.classList.toggle('active');
+                    btn.parentElement.classList.toggle('active');
                 });
             });
 
             // --- MENU MOBILE ---
             const btn = document.getElementById('mobile-menu-btn');
             const menu = document.getElementById('mobile-menu');
-            const links = document.querySelectorAll('.mobile-link');
             let isOpen = false;
 
-            const toggle = () => {
+            const toggleMenu = () => {
                 isOpen = !isOpen;
-                if(isOpen) {
-                    menu.classList.remove('hidden');
-                    menu.classList.add('flex');
-                    btn.innerHTML = '<i class="fas fa-times"></i>';
-                    document.body.style.overflow = 'hidden';
-                } else {
-                    menu.classList.add('hidden');
-                    menu.classList.remove('flex');
-                    btn.innerHTML = '<i class="fas fa-bars"></i>';
-                    document.body.style.overflow = 'auto';
-                }
+                menu.classList.toggle('hidden', !isOpen);
+                menu.classList.toggle('flex', isOpen);
+                btn.innerHTML = isOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+                document.body.style.overflow = isOpen ? 'hidden' : 'auto';
             };
 
-            btn.addEventListener('click', toggle);
-            links.forEach(l => l.addEventListener('click', toggle));
+            btn.addEventListener('click', toggleMenu);
+            document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', toggleMenu));
         });
     </script>
 </body>
 </html>
-
-
-
