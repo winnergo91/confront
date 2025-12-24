@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- =======================================================================
-         SEO & META TAGS - OTIMIZAÇÃO PARA GOOGLE
-         ======================================================================= -->
+    <!-- SEO & META TAGS -->
     <title>CONFRONT | Contabilidade Especializada para Nutricionistas</title>
     <meta name="description" content="Somos uma contabilidade estratégica, focada em NUTRICIONISTAS. Simplificamos suas finanças para que você possa focar no seu crescimento. Abra sua empresa grátis.">
     <meta name="keywords" content="contabilidade para nutricionistas, contador nutricionista, abrir empresa nutrição, contabilidade online, BPO financeiro nutrição">
@@ -48,16 +46,6 @@
       }
     }
     </script>
-
-    <!-- 
-        =======================================================================
-        MANUAL DE TROCA DE IMAGENS E ASSETS
-        =======================================================================
-        1. Crie uma pasta chamada 'assets' na mesma pasta deste arquivo.
-        2. Salve seu arquivo de logo como 'logo.svg' dentro dessa pasta.
-        3. Salve seu ícone de aba como 'favicon.svg' dentro dessa pasta.
-        =======================================================================
-    -->
 
     <link rel="icon" type="image/svg+xml" href="assets/favicon.png">
 
@@ -234,8 +222,6 @@
         .faq-icon { transition: transform 0.3s; }
         .faq-item.active .faq-icon { transform: rotate(180deg); color: #CCFF00; }
 
-        /* [CSS DA LOGO ANTIGA REMOVIDO DAQUI] */
-
         /* --- ANIMAÇÕES E EFEITOS --- */
         .hover-color-img {
             filter: grayscale(100%) contrast(1.2);
@@ -293,23 +279,27 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* --- ESTILOS DA CALCULADORA --- */
+        .calc-input { background: #0F0F0F; border: 1px solid #262626; color: white; padding: 12px; border-radius: 8px; width: 100%; outline: none; transition: 0.3s; }
+        .calc-input:focus { border-color: #CCFF00; box-shadow: 0 0 10px rgba(204, 255, 0, 0.2); }
+        .memoria-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #1a1a1a; font-size: 0.8rem; align-items: flex-end; }
+        .memoria-label { color: #888; display: flex; flex-direction: column; }
+        .memoria-label small { font-size: 0.65rem; color: #555; }
+        .highlight-neon { color: #CCFF00; font-weight: bold; }
+        .highlight-red { color: #ff4444; }
+        .card-active { border-color: #CCFF00 !important; box-shadow: 0 0 30px rgba(204, 255, 0, 0.1); }
     </style>
 </head>
 <body class="antialiased selection:bg-brand selection:text-black">
 
     <div class="noise-overlay"></div>
 
-    <!-- Navegação -->
+    <!-- Navegação (HEADER SEM O MENU MOBILE DENTRO) -->
     <header class="fixed w-full z-50 glass-header transition-all duration-300" id="navbar">
-        <nav class="container mx-auto px-6 h-20 flex justify-between items-center">
+        <nav class="container mx-auto px-6 h-20 flex justify-between items-center relative z-50">
             
-            <!-- [ÁREA DA LOGO - HEADER] -->
             <a href="#" class="group flex items-center gap-3">
-                <!-- 
-                   AGORA ESTÁ USANDO A TAG <IMG>.
-                   Coloque seu arquivo 'logo.svg' na pasta assets.
-                   Se quiser aumentar ou diminuir, mude o 'h-10' (altura) abaixo.
-                -->
                 <img src="assets/logo.svg" alt="Confront Contabilidade" class="h-14 w-auto">
             </a>
 
@@ -319,6 +309,11 @@
                 <a href="#servicos" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Serviços</a>
                 <a href="#metodo" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Como Funciona</a>
                 <a href="#faq" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Dúvidas</a>
+                <!-- Novo Botão Calculadora -->
+                <button id="nav-open-calc" class="text-sm font-medium text-brand hover:text-white transition-colors flex items-center gap-2">
+                    <i class="fas fa-calculator"></i> Simulador
+                </button>
+                
             </div>
 
             <div class="hidden md:flex gap-4">
@@ -327,18 +322,33 @@
                 </a>
             </div>
 
-            <button id="mobile-menu-btn" class="md:hidden text-white text-2xl">
+            <!-- Botão Hamburguer -->
+            <button id="mobile-menu-btn" class="md:hidden text-white text-2xl z-50 transition-colors">
                 <i class="fas fa-bars"></i>
             </button>
         </nav>
+    </header>
 
-        <div id="mobile-menu" class="fixed inset-0 bg-dark-base/95 backdrop-blur-xl z-40 hidden flex-col justify-center items-center gap-8 p-6">
+    <!-- 
+       MENU MOBILE (FORA DO HEADER)
+    -->
+
+    <div id="mobile-menu" class="fixed inset-0 bg-brand-base/50 backdrop-blur-xl z-40 hidden flex-col justify-start items-center gap-8 p-6 pt-24">
             <a href="#quem-somos" class="text-2xl font-bold text-white mobile-link">Quem Somos</a>
             <a href="#servicos" class="text-2xl font-bold text-white mobile-link">Serviços</a>
             <a href="#metodo" class="text-2xl font-bold text-white mobile-link">Como Funciona</a>
+            <a href="#faq" class="text-2xl font-bold text-white mobile-link">Dúvidas</a>
+            <!-- Novo Botão Mobile -->
+            <button id="mobile-open-calc" class="text-2xl font-bold text-brand mobile-link">
+                <i class="fas fa-calculator"></i> Simulador
+            </button>
             <a href="https://wa.me/5547996816214?text=Ol%C3%A1%2C+tenho+d%C3%BAvidas+relacionadas+a+contabilidade." target="_blank" class="btn-primary w-full justify-center">Falar no WhatsApp</a>
         </div>
-    </header>
+
+    <div class="noise-overlay"></div>
+
+
+
 
     <main>
         <!-- HERO SECTION -->
@@ -385,9 +395,7 @@
                         <div class="relative rounded-2xl overflow-hidden border border-dark-border shadow-2xl shadow-brand/10 group interactive-element">
                             <div class="absolute inset-0 bg-gradient-to-t from-dark-base via-transparent to-transparent opacity-60 z-10 pointer-events-none"></div>
                             
-                            <!-- <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" -->
                             <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
-
                                  alt="Gestão Financeira" 
                                  class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700 hover-color-img filter grayscale">
                             
@@ -397,7 +405,7 @@
                                     <div>
                                         <p class="text-xs text-brand font-bold uppercase tracking-wider mb-1">Partindo do zero?</p>
                                         <p class="text-xl font-bold text-white mb-1">Programa Início de Carreira e Negócios</p>
-                                        <p class="text-xs text-gray-400">Clique para conhecer condições especiais.</p>
+                                        <p class="text-xs text-brand font-bold uppercase tracking-wider mb-1">Clique para connhecer.</p>
                                     </div>
                                     <div class="h-10 w-10 bg-white group-hover:bg-brand rounded-full flex items-center justify-center text-black transition-colors">
                                         <i class="fas fa-plus"></i>
@@ -448,15 +456,19 @@
                             
                             <img src="assets/foto-profissional.jpg" 
                                  alt="Lucas Barauna" 
-                                 class="w-full h-full object-cover hover-color-img"
-                                 
+                                 class="w-full h-full object-cover hover-color-img" />
                             
                             <div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black to-transparent flex justify-between items-end">
                                 <div>
-                                    <h3 class="text-3xl font-anton text-white">Lucas Barauna</h3>
-                                    <p class="text-brand font-mono text-sm">Fundador</p>
+                                    <h3 class="text-2xl font-anton text-white">Lucas Barauna - Fundador</h3>
+                                    <p class="text-brand font-mono text-sm">Professor acadêmico e empresário.<br></p>
+                                    <p class="text-brand font-mono text-sm">Mestrando em Economia e Especialista em Investimentos.<br></p>
+                                    <p class="text-brand font-mono text-sm">Membro do CRC-SC e na CVM como Consultor.</p>
+
+                                        
+                                    </p>
                                 </div>
-                                <div class="text-4xl font-anton text-white/10">CF</div>
+                                
                             </div>
                         </div>
                     </div>
@@ -614,12 +626,11 @@
             </div>
         </section>
 
-        <!-- SAIA NA FRENTE "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"-->
+        <!-- SAIA NA FRENTE -->
         <section class="py-20 relative overflow-hidden">
             <div class="container mx-auto px-6">
                 <div class="relative rounded-2xl overflow-hidden aspect-video md:aspect-[21/9] border border-dark-border group interactive-element">
                     <div class="absolute inset-0 border-2 border-brand opacity-0 neon-border transition-opacity duration-700 z-20 pointer-events-none"></div>
-                    
                     
                     <img src= "assets/foto-surf.jpg"
                          alt="Pista de Atletismo - Superação" 
@@ -680,7 +691,6 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                 <div class="md:col-span-2">
                     
-                    <!-- [ÁREA DA LOGO - FOOTER] -->
                     <div class="mb-4">
                         <!-- Logo no rodapé usando imagem -->
                         <img src="assets/logo.svg" alt="Confront Contabilidade" class="h-10 w-auto">
@@ -747,29 +757,286 @@
         </div>
     </div>
 
+    <!-- 
+      MODAL CALCULADORA CORRIGIDO
+      Ajuste Mobile: items-start (alinhado ao topo) + pt-24 (respiro do topo) + pb-24 (respiro do teclado)
+      Ajuste Desktop: md:items-center (centralizado) + md:pt-4
+    -->
+    <div id="modal-calculadora" class="modal fixed inset-0 z-[60] flex items-start md:items-start justify-center p-4 overflow-y-auto pt-14 pb-14 md:py-10">
+        <div class="absolute inset-0 bg-black/90 backdrop-blur-sm" id="calc-backdrop"></div>
+        <div class="modal-content relative bg-dark-card border border-brand/20 w-full max-w-5xl rounded-2xl p-6 md:p-10 shadow-2xl shadow-brand/10 my-10">
+            <button id="close-calc-btn" class="absolute top-4 right-4 text-gray-400 hover:text-white z-20"><i class="fas fa-times text-xl"></i></button>
+            
+            <header class="text-center mb-10">
+                <h2 class="text-3xl md:text-5xl font-anton text-white tracking-tighter mb-2 uppercase">
+                    SIMULADOR <span class="text-brand">FISCAL</span>
+                </h2>
+                <p class="text-gray-400 text-sm">Compare PF vs PJ em tempo real.</p>
+            </header>
+
+            <div class="bg-white/5 border border-white/10 p-6 rounded-xl mb-8">
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div>
+                        <label class="block text-[10px] font-bold text-gray-500 uppercase mb-2">Faturamento Mensal (R$)</label>
+                        <input type="number" id="modal_faturamento" class="calc-input" value="0" oninput="calcularTudo('modal_')">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold text-gray-500 uppercase mb-2">Pró-labore (R$) 28%</label>
+                        <input type="number" id="modal_prolabore" class="calc-input" value="0" oninput="calcularTudo('modal_')">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold text-gray-500 uppercase mb-2">Custos Fixos PJ (R$)</label>
+                        <input type="number" id="modal_custoPJ" class="calc-input" value="0" oninput="calcularTudo('modal_')">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold text-gray-500 uppercase mb-2">Custos Autônomo (R$)</label>
+                        <input type="number" id="modal_custoPF" class="calc-input" value="0" oninput="calcularTudo('modal_')">
+                    </div>
+                </div>
+            </div>
+
+            <div id="modal_vencedor-box" class="mb-8 p-4 rounded-xl bg-brand/5 border border-brand/20 text-center">
+                <div id="modal_vencedor-text" class="text-2xl font-anton text-brand tracking-tighter uppercase">--</div>
+                <p id="modal_vencedor-economia" class="text-white text-xs mt-1">Insira os dados para simular.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-6">
+                <!-- Card PJ Modal -->
+                <div id="modal_card-pj" class="bg-black/40 border border-white/10 rounded-xl overflow-hidden transition-all duration-300">
+                    <div class="p-3 bg-brand flex justify-between items-center">
+                        <span class="text-black font-bold uppercase tracking-widest text-[9px]">Cenário PJ</span>
+                        <span id="modal_pj-tag" class="bg-black text-white text-[9px] px-2 py-0.5 rounded font-bold">FATOR R</span>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <div class="memoria-row"><span class="memoria-label">Faturamento</span><span id="modal_res_pj_fat" class="font-mono text-white"></span></div>
+                        <div class="memoria-row"><span class="memoria-label">Imposto DAS</span><span id="modal_res_pj_das" class="font-mono highlight-red"></span></div>
+                        <div class="memoria-row"><span class="memoria-label">INSS + IRPF (Retidos)</span><span id="modal_res_pj_retidos" class="font-mono highlight-red"></span></div>
+                        <div class="memoria-row"><span class="memoria-label">Custos Operacionais</span><span id="modal_res_pj_custos" class="font-mono highlight-red"></span></div>
+                        <div class="pt-4 border-t border-white/10 flex justify-between items-end">
+                            <span class="text-gray-500 text-[9px] uppercase font-bold">Líquido</span>
+                            <span id="modal_res_pj_liq" class="text-2xl font-anton text-white tracking-tighter"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card PF Modal -->
+                <div id="modal_card-pf" class="bg-black/40 border border-white/10 rounded-xl overflow-hidden transition-all duration-300">
+                    <div class="p-3 bg-white/10 flex justify-between items-center">
+                        <span class="text-white font-bold uppercase tracking-widest text-[9px]">Cenário Autônomo</span>
+                        <span class="bg-dark-base text-gray-500 text-[9px] px-2 py-0.5 rounded font-bold">PF REGULAR</span>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <div class="memoria-row"><span class="memoria-label">Faturamento</span><span id="modal_res_pf_fat" class="font-mono text-white"></span></div>
+                        <div class="memoria-row"><span class="memoria-label">INSS Autônomo</span><span id="modal_res_pf_inss" class="font-mono highlight-red"></span></div>
+                        <div class="memoria-row"><span class="memoria-label">IRPF Carnê-Leão</span><span id="modal_res_pf_ir_final" class="font-mono highlight-red"></span></div>
+                        <div class="memoria-row"><span class="memoria-label">Custos Operacionais</span><span id="modal_res_pf_custos" class="font-mono highlight-red"></span></div>
+                        <div class="pt-4 border-t border-white/10 flex justify-between items-end">
+                            <span class="text-gray-500 text-[9px] uppercase font-bold">Líquido</span>
+                            <span id="modal_res_pf_liq" class="text-2xl font-anton text-white tracking-tighter"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 text-center">
+                <a href="https://wa.me/5547996816214?text=Ol%C3%A1%2C+fiz+a+simula%C3%A7%C3%A3o+no+site+e+gostaria+de+entender+melhor." target="_blank" class="btn-primary">
+                    <i class="fab fa-whatsapp"></i> Quero esse resultado
+                </a>
+            </div>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        // --- MOTOR DE CÁLCULO ---
+        // Prefixo permite usar a mesma função para a calculadora da página (page_) e do modal (modal_)
+        function calcularTudo(prefix) {
+            const getVal = (id) => parseFloat(document.getElementById(prefix + id)?.value) || 0;
+            const setTxt = (id, txt) => { 
+                const el = document.getElementById(prefix + id);
+                if(el) el.innerText = txt; 
+            };
             
-            // --- MODAL LÓGICA ---
-            const modal = document.getElementById('modal-incentivo');
-            const openBtn = document.getElementById('open-modal-btn');
-            const closeBtn = document.getElementById('close-modal-btn');
-            const backdrop = document.getElementById('modal-backdrop');
+            const fat = getVal('faturamento');
+            const pro = getVal('prolabore');
+            const cPJ = getVal('custoPJ');
+            const cPF = getVal('custoPF');
 
-            function toggleModal(show) {
-                if (show) {
-                    modal.classList.add('open');
-                    document.body.style.overflow = 'hidden';
-                } else {
-                    modal.classList.remove('open');
-                    document.body.style.overflow = 'auto';
+            if (fat === 0) return; // Evita cálculo zerado inicial
+
+            // --- Motor de Cálculo IRPF 2026 ---
+            function getMemoriaIRPF(rendimento) {
+                const descSimp = 564.80;
+                const base = Math.max(0, rendimento - descSimp);
+                let aliq = 0; let ded = 0; let faixa = "";
+
+                if (base <= 2428.80) { aliq = 0; ded = 0; faixa = "Isento"; }
+                else if (base <= 2826.65) { aliq = 0.075; ded = 182.16; faixa = "7,5%"; }
+                else if (base <= 3751.05) { aliq = 0.15; ded = 394.16; faixa = "15%"; }
+                else if (base <= 4664.68) { aliq = 0.225; ded = 675.49; faixa = "22,5%"; }
+                else { aliq = 0.275; ded = 908.73; faixa = "27,5%"; }
+
+                const irNormal = Math.max(0, (base * aliq) - ded);
+                let redLei = 0;
+
+                if (rendimento <= 5000) { redLei = irNormal; }
+                else if (rendimento <= 7350) { 
+                    redLei = 978.62 - (0.133145 * rendimento); 
                 }
+
+                return {
+                    base, aliq: aliq * 100, ded, faixa, redLei: Math.max(0, redLei), 
+                    final: Math.max(0, irNormal - redLei)
+                };
             }
 
-            if(openBtn) openBtn.addEventListener('click', () => toggleModal(true));
-            if(closeBtn) closeBtn.addEventListener('click', () => toggleModal(false));
-            if(backdrop) backdrop.addEventListener('click', () => toggleModal(false));
+            // --- TABELAS SIMPLES NACIONAL 2025 ---
+            // Formato: [LimiteSuperior, Aliquota, Dedução]
+            const tabelaAnexo3 = [
+                { limite: 180000, aliq: 0.060, ded: 0 },
+                { limite: 360000, aliq: 0.112, ded: 9360 },
+                { limite: 720000, aliq: 0.135, ded: 17640 },
+                { limite: 1800000, aliq: 0.160, ded: 35640 },
+                { limite: 3600000, aliq: 0.210, ded: 125640 },
+                { limite: 4800000, aliq: 0.330, ded: 648000 }
+            ];
+
+            const tabelaAnexo5 = [
+                { limite: 180000, aliq: 0.155, ded: 0 },
+                { limite: 360000, aliq: 0.180, ded: 4500 },
+                { limite: 720000, aliq: 0.195, ded: 9900 },
+                { limite: 1800000, aliq: 0.205, ded: 17100 },
+                { limite: 3600000, aliq: 0.230, ded: 62100 },
+                { limite: 4800000, aliq: 0.305, ded: 540000 }
+            ];
+
+            function calcularSimples(rbt12, tabela) {
+                // Encontrar a faixa
+                let faixa = tabela.find(f => rbt12 <= f.limite);
+                if (!faixa) faixa = tabela[tabela.length - 1]; // Pega a última se passar
+
+                // Fórmula: ((RBT12 * Aliq) - Ded) / RBT12
+                // Para a primeira faixa, a dedução é zero, então efetiva == nominal.
+                let aliqEfetiva = ((rbt12 * faixa.aliq) - faixa.ded) / rbt12;
+                
+                return aliqEfetiva;
+            }
+
+            // --- Cálculos PJ ---
+            // RBT12: Extrapolação do faturamento mensal para 12 meses
+            const rbt12 = fat * 12;
+
+            // Fator R: Prolabore / Faturamento Mensal
+            const fatorR = (pro / fat) >= 0.28;
+            
+            // Define qual tabela usar
+            let aliqEfetivaDAS = 0;
+            let nomeTabela = "";
+
+            if (fatorR) {
+                // Fator R >= 28% -> Anexo III
+                aliqEfetivaDAS = calcularSimples(rbt12, tabelaAnexo3);
+                nomeTabela = "ANEXO III (Reduzido)";
+            } else {
+                // Fator R < 28% -> Anexo V
+                aliqEfetivaDAS = calcularSimples(rbt12, tabelaAnexo5);
+                nomeTabela = "ANEXO V (Padrão)";
+            }
+
+            const das = fat * aliqEfetivaDAS;
+            const inssPJ = Math.min(pro, 8157.47) * 0.11;
+            const mPJ = getMemoriaIRPF(pro);
+            const liqPJ = fat - das - inssPJ - mPJ.final - cPJ;
+
+            // --- Cálculos PF ---
+            const inssPF = Math.min(fat, 8157.47) * 0.11;
+            const mPF = getMemoriaIRPF(fat);
+            const liqPF = fat - inssPF - mPF.final - cPF;
+
+            // --- Formatação ---
+            const fmt = (v) => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            const fmtAliq = (v) => (v * 100).toFixed(2) + "%";
+
+            // --- Renderização PJ ---
+            setTxt('res_pj_fat', fmt(fat));
+            setTxt('res_pj_das', "- " + fmt(das));
+            setTxt('res_pj_inss', "- " + fmt(inssPJ));
+            setTxt('res_pj_ir_final', "- " + fmt(mPJ.final));
+            setTxt('res_pj_custos', "- " + fmt(cPJ));
+            setTxt('res_pj_liq', fmt(liqPJ));
+            setTxt('res_pj_efetiva', "Carga Real: " + (((fat-liqPJ-cPJ)/fat)*100).toFixed(1) + "%");
+            
+            // Mostra a alíquota efetiva calculada e qual anexo foi usado
+            setTxt('pj-tag', fatorR ? `FATOR R OK (${fmtAliq(aliqEfetivaDAS)})` : `${nomeTabela} (${fmtAliq(aliqEfetivaDAS)})`);
+            
+            // Para o modal que agrupa retenções
+            setTxt('res_pj_retidos', "- " + fmt(inssPJ + mPJ.final));
+
+            // --- Renderização PF ---
+            setTxt('res_pf_fat', fmt(fat));
+            setTxt('res_pf_inss', "- " + fmt(inssPF));
+            setTxt('res_pf_ir_final', "- " + fmt(mPF.final));
+            setTxt('res_pf_custos', "- " + fmt(cPF));
+            setTxt('res_pf_liq', fmt(liqPF));
+            setTxt('res_pf_efetiva', "Carga Real: " + (((fat-liqPF-cPF)/fat)*100).toFixed(1) + "%");
+
+            // --- Verdict ---
+            const vText = document.getElementById(prefix + 'vencedor-text');
+            const vEco = document.getElementById(prefix + 'vencedor-economia');
+            const cPJ_el = document.getElementById(prefix + 'card-pj');
+            const cPF_el = document.getElementById(prefix + 'card-pf');
+
+            if(vText && vEco && cPJ_el && cPF_el) {
+                if (liqPJ > liqPF) { // Lucro PJ Maior = Melhor
+                    vText.innerText = "ABRIR EMPRESA (PJ)";
+                    vText.classList.remove('text-gray-500'); vText.classList.add('text-brand');
+                    vEco.innerText = "Sua economia líquida é de " + fmt(liqPJ - liqPF) + " por mês.";
+                    cPJ_el.classList.add('card-active'); cPF_el.classList.remove('card-active');
+                } else {
+                    vText.innerText = "MANTER AUTÔNOMO (PF)";
+                    vText.classList.remove('text-brand'); vText.classList.add('text-gray-500');
+                    vEco.innerText = "Neste cenário, o CPF é " + fmt(liqPF - liqPJ) + " mais vantajoso.";
+                    cPF_el.classList.add('card-active'); cPJ_el.classList.remove('card-active');
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- MODAL LÓGICA (Genérica para os dois modais) ---
+            function setupModal(modalId, openBtns, closeId, backdropId) {
+                const modal = document.getElementById(modalId);
+                const closeBtn = document.getElementById(closeId);
+                const backdrop = document.getElementById(backdropId);
+
+                function toggle(show) {
+                    if (show) {
+                        modal.classList.add('open');
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        modal.classList.remove('open');
+                        document.body.style.overflow = 'auto';
+                    }
+                }
+
+                openBtns.forEach(btnId => {
+                    const btn = document.getElementById(btnId);
+                    if(btn) btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        toggle(true);
+                    });
+                });
+
+                if(closeBtn) closeBtn.addEventListener('click', () => toggle(false));
+                if(backdrop) backdrop.addEventListener('click', () => toggle(false));
+            }
+
+            // Modal Incentivo
+            setupModal('modal-incentivo', ['open-modal-btn'], 'close-modal-btn', 'modal-backdrop');
+
+            // Modal Calculadora (Botões Desktop e Mobile)
+            setupModal('modal-calculadora', ['nav-open-calc', 'mobile-open-calc'], 'close-calc-btn', 'calc-backdrop');
+
 
             // --- EFEITO IMAGEM ---
             const interactiveElements = document.querySelectorAll('.interactive-element');
@@ -822,13 +1089,31 @@
                 isOpen = !isOpen;
                 menu.classList.toggle('hidden', !isOpen);
                 menu.classList.toggle('flex', isOpen);
+                
+                // Troca ícone
                 btn.innerHTML = isOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+                
+                // Troca cor do ícone: Preto quando aberto (no fundo verde), Branco quando fechado (no header)
+                if (isOpen) {
+                    btn.classList.remove('text-white');
+                    btn.classList.add('text-black');
+                } else {
+                    btn.classList.remove('text-black');
+                    btn.classList.add('text-white');
+                }
+
                 document.body.style.overflow = isOpen ? 'hidden' : 'auto';
             };
 
             btn.addEventListener('click', toggleMenu);
             document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', toggleMenu));
+            
+            // Fechar ao clicar na área vazia (fundo verde)
+            menu.addEventListener('click', (e) => {
+                if(e.target === menu) toggleMenu();
+            });
         });
     </script>
 </body>
 </html>
+
