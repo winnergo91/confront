@@ -309,7 +309,7 @@
                 <a href="#servicos" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Serviços</a>
                 <a href="#metodo" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Como Funciona</a>
                 <a href="#faq" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Dúvidas</a>
-                <!-- Novo Botão Calculadora -->
+                <!-- Botão Calculadora -->
                 <button id="nav-open-calc" class="text-sm font-medium text-brand hover:text-white transition-colors flex items-center gap-2">
                     <i class="fas fa-calculator"></i> Simulador
                 </button>
@@ -338,7 +338,7 @@
             <a href="#servicos" class="text-2xl font-bold text-white mobile-link">Serviços</a>
             <a href="#metodo" class="text-2xl font-bold text-white mobile-link">Como Funciona</a>
             <a href="#faq" class="text-2xl font-bold text-white mobile-link">Dúvidas</a>
-            <!-- Novo Botão Mobile -->
+            <!-- Botão Mobile -->
             <button id="mobile-open-calc" class="text-2xl font-bold text-brand mobile-link">
                 <i class="fas fa-calculator"></i> Simulador
             </button>
@@ -758,7 +758,7 @@
     </div>
 
     <!-- 
-      MODAL CALCULADORA CORRIGIDO
+      MODAL CALCULADORA
       Ajuste Mobile: items-start (alinhado ao topo) + pt-24 (respiro do topo) + pb-24 (respiro do teclado)
       Ajuste Desktop: md:items-center (centralizado) + md:pt-4
     -->
@@ -778,19 +778,19 @@
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
                     <div>
                         <label class="block text-[10px] font-bold text-gray-500 uppercase mb-2">Faturamento Mensal (R$)</label>
-                        <input type="number" id="modal_faturamento" class="calc-input" value="0" oninput="calcularTudo('modal_')">
+                        <input type="number" id="modal_faturamento" class="calc-input" value="4000" oninput="calcularTudo('modal_')">
                     </div>
                     <div>
                         <label class="block text-[10px] font-bold text-gray-500 uppercase mb-2">Pró-labore (R$) 28%</label>
-                        <input type="number" id="modal_prolabore" class="calc-input" value="0" oninput="calcularTudo('modal_')">
+                        <input type="number" id="modal_prolabore" class="calc-input" value="1600" oninput="calcularTudo('modal_')">
                     </div>
                     <div>
                         <label class="block text-[10px] font-bold text-gray-500 uppercase mb-2">Custos Fixos PJ (R$)</label>
-                        <input type="number" id="modal_custoPJ" class="calc-input" value="0" oninput="calcularTudo('modal_')">
+                        <input type="number" id="modal_custoPJ" class="calc-input" value="500" oninput="calcularTudo('modal_')">
                     </div>
                     <div>
                         <label class="block text-[10px] font-bold text-gray-500 uppercase mb-2">Custos Autônomo (R$)</label>
-                        <input type="number" id="modal_custoPF" class="calc-input" value="0" oninput="calcularTudo('modal_')">
+                        <input type="number" id="modal_custoPF" class="calc-input" value="200" oninput="calcularTudo('modal_')">
                     </div>
                 </div>
             </div>
@@ -809,8 +809,9 @@
                     </div>
                     <div class="p-6 space-y-3">
                         <div class="memoria-row"><span class="memoria-label">Faturamento</span><span id="modal_res_pj_fat" class="font-mono text-white"></span></div>
-                        <div class="memoria-row"><span class="memoria-label">Imposto DAS</span><span id="modal_res_pj_das" class="font-mono highlight-red"></span></div>
-                        <div class="memoria-row"><span class="memoria-label">INSS + IRPF (Retidos)</span><span id="modal_res_pj_retidos" class="font-mono highlight-red"></span></div>
+                        <div class="memoria-row"><span class="memoria-label">INSS 11% (Pró Labore)</span><span id="modal_res_pj_inss" class="font-mono highlight-red"></span></div>
+                        <div class="memoria-row"><span class="memoria-label">IRPF (Pró Labore)</span><span id="modal_res_pj_ir_final" class="font-mono highlight-red"></span></div>
+                        <div class="memoria-row"><span class="memoria-label">Imposto DAS </span><span id="modal_res_pj_das" class="font-mono highlight-red"></span></div>
                         <div class="memoria-row"><span class="memoria-label">Custos Operacionais</span><span id="modal_res_pj_custos" class="font-mono highlight-red"></span></div>
                         <div class="pt-4 border-t border-white/10 flex justify-between items-end">
                             <span class="text-gray-500 text-[9px] uppercase font-bold">Líquido</span>
@@ -827,8 +828,9 @@
                     </div>
                     <div class="p-6 space-y-3">
                         <div class="memoria-row"><span class="memoria-label">Faturamento</span><span id="modal_res_pf_fat" class="font-mono text-white"></span></div>
-                        <div class="memoria-row"><span class="memoria-label">INSS Autônomo</span><span id="modal_res_pf_inss" class="font-mono highlight-red"></span></div>
+                        <div class="memoria-row"><span class="memoria-label">INSS Autônomo 20%</span><span id="modal_res_pf_inss" class="font-mono highlight-red"></span></div>
                         <div class="memoria-row"><span class="memoria-label">IRPF Carnê-Leão</span><span id="modal_res_pf_ir_final" class="font-mono highlight-red"></span></div>
+                        <div class="memoria-row"><span class="memoria-label">ISS Autônomo 3%</span><span id="modal_res_pf_iss" class="font-mono highlight-red"></span></div>
                         <div class="memoria-row"><span class="memoria-label">Custos Operacionais</span><span id="modal_res_pf_custos" class="font-mono highlight-red"></span></div>
                         <div class="pt-4 border-t border-white/10 flex justify-between items-end">
                             <span class="text-gray-500 text-[9px] uppercase font-bold">Líquido</span>
@@ -949,9 +951,10 @@
             const liqPJ = fat - das - inssPJ - mPJ.final - cPJ;
 
             // --- Cálculos PF ---
-            const inssPF = Math.min(fat, 8157.47) * 0.11;
+            const inssPF = Math.min(fat, 8157.47) * 0.2;
+            const issPF = fat * 0.03;
             const mPF = getMemoriaIRPF(fat);
-            const liqPF = fat - inssPF - mPF.final - cPF;
+            const liqPF = fat - inssPF - issPF - mPF.final - cPF;
 
             // --- Formatação ---
             const fmt = (v) => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -975,6 +978,7 @@
             // --- Renderização PF ---
             setTxt('res_pf_fat', fmt(fat));
             setTxt('res_pf_inss', "- " + fmt(inssPF));
+            setTxt('res_pf_iss', "- " + fmt(issPF));
             setTxt('res_pf_ir_final', "- " + fmt(mPF.final));
             setTxt('res_pf_custos', "- " + fmt(cPF));
             setTxt('res_pf_liq', fmt(liqPF));
@@ -993,7 +997,7 @@
                     vEco.innerText = "Sua economia líquida é de " + fmt(liqPJ - liqPF) + " por mês.";
                     cPJ_el.classList.add('card-active'); cPF_el.classList.remove('card-active');
                 } else {
-                    vText.innerText = "MANTER AUTÔNOMO (PF)";
+                    vText.innerText = "Existe a Vantagem financeira de ser autônomo (PF)";
                     vText.classList.remove('text-brand'); vText.classList.add('text-gray-500');
                     vEco.innerText = "Neste cenário, o CPF é " + fmt(liqPF - liqPJ) + " mais vantajoso.";
                     cPF_el.classList.add('card-active'); cPJ_el.classList.remove('card-active');
@@ -1002,6 +1006,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
+            calcularTudo('modal_');
             
             // --- MODAL LÓGICA (Genérica para os dois modais) ---
             function setupModal(modalId, openBtns, closeId, backdropId) {
@@ -1116,4 +1121,3 @@
     </script>
 </body>
 </html>
-
